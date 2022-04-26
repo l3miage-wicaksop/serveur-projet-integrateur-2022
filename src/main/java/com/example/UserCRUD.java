@@ -85,8 +85,9 @@ public class UserCRUD {
         try (Connection connection = dataSource.getConnection()) { 
 
             Statement stmt = connection.createStatement(); 
-            ResultSet rs = stmt.executeQuery("insert into users (userId, description, login, age) values('" + u.userId+ "','"+ u.description + "', '" + u.login + "'," + u.age + ")" ); 
+            ResultSet rs = stmt.executeQuery("insert into users (userId, description, login, age) values('" + id+ "','"+ u.description + "', '" + u.login + "'," + u.age + ")" ); 
 
+            u.userId = rs.getString("userId");
             u.login = rs.getString("login");
             u.description = rs.getString("description");
             u.age = rs.getInt("age");
