@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -80,11 +81,11 @@ public class UserCRUD {
     }
 
     @PostMapping("/{userId}")
-    User create(@PathVariable(value="userId") String id, User u, HttpServletResponse response) {
+    User create(@PathVariable(value="userId") String id, @RequestBody User u, HttpServletResponse response) {
         try (Connection connection = dataSource.getConnection()) { 
 
             Statement stmt = connection.createStatement(); 
-            ResultSet rs = stmt.executeQuery("insert into users (description, login, age) values('"+ u.description + "', '" + u.login + "'," + u.age + ")" ); 
+            ResultSet rs = stmt.executeQuery("insert into users (userId, description, login, age) values('" + u.userId+ "','"+ u.description + "', '" + u.login + "'," + u.age + ")" ); 
 
             u.login = rs.getString("login");
             u.description = rs.getString("description");
