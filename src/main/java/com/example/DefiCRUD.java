@@ -57,6 +57,37 @@ public class DefiCRUD {
         }   
     }
 
+    @GetMapping("/{userId}")
+    Defi read(@PathVariable(value="userId") String id, HttpServletResponse response){
+        try (Connection connection = dataSource.getConnection()) { 
+
+            Statement stmt = connection.createStatement(); 
+            ResultSet rs = stmt.executeQuery("SELECT * FROM defis where idDefi ='" + id +"'"); 
+            Defi d = new Defi(); 
+            while (rs.next()) { 
+                d.idDefi = id;
+                d.auteur = rs.getString("auteur");
+                d.description = rs.getString("description");
+                d.titre = rs.getString("titre");
+                d.dateCreation = rs.getTimestamp("dateCreation");
+                
+            }
+            
+            
+            return d;
+            
+        } catch(Exception e){
+            response.setStatus(404);
+            try{
+                response.getOutputStream().print(e.getMessage());
+            } catch(Exception e2){
+                System.err.println(e2.getMessage());
+            }
+            System.err.println(e.getMessage());
+            return null;
+        }
+    }
+
 
     @DeleteMapping("/{userId}")
     void delete(@PathVariable(value="userId") String id, HttpServletResponse response){
