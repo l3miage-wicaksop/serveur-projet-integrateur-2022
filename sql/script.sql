@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS chamis (
     login varchar(20),
     age INTEGER,
     description varchar(50)
-)
+);
 
 -- CREATE TABLE IF NOT EXISTS visite (
 --     idVisite varchar(10) NOT NULL,
@@ -25,15 +25,13 @@ CREATE TABLE IF NOT EXISTS defis (
     -- prologue varchar(30),
     -- epilogue varchar(30),
     -- motsCles varChar(30)
-)
+);
 
+insert into chamis (userid, login, age) values ('D132','carobis', 21 );
+insert into chamis (userid, login, age) values ('D99','escribis', 43 );
+insert into chamis (userid, login, age) values ('D22' ,'momo', 38 );
+insert into chamis (userid, login, age) values ('D102','nomoldu', 20 );
+insert into chamis (userid, login, age) values ('D66', 'python38', 18 );
+insert into chamis (userid, login, age) values ('D32', 'yes4moldus', 38 );
 
-insert into chamis (login, age) values ('carobis', 21 );
-insert into chamis (login, age) values ('escribis', 43 );
-insert into chamis (login, age) values ('momo', 38 );
-insert into chamis (login, age) values ('nomoldu', 20 );
-insert into chamis (login, age) values ('python38', 18 );
-insert into chamis (login, age) values ('yes4moldus', 38 );
-
-
-insert into defis (idDefi, titre, description, dateCreation) values ('D666', 'Premier defi', 'wow le premier!', '2022-04-26 19:10:25-07')
+efi', 'wow le premier!', '2022-04-26 19:10:25-07')
