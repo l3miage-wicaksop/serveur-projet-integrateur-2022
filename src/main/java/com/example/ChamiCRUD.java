@@ -38,6 +38,7 @@ public class ChamiCRUD {
                 u.login = rs.getString("login"); 
                 u.age = rs.getInt("age"); 
                 u.description = rs.getString("description");
+                u.userId = rs.getString("userId");
                 L.add(u); 
             }
             return L;
@@ -60,7 +61,7 @@ public class ChamiCRUD {
         try (Connection connection = dataSource.getConnection()) { 
 
             Statement stmt = connection.createStatement(); 
-            ResultSet rs = stmt.executeQuery("insert into users (userId, description, login, age) values('" + id + "','"+ c.description + "', '" + c.login + "'," + c.age + ")" ); 
+            ResultSet rs = stmt.executeQuery("insert into chamis (userId, description, login, age) values('" + id + "','"+ c.description + "', '" + c.login + "'," + c.age + ")" ); 
 
             return c;
             
