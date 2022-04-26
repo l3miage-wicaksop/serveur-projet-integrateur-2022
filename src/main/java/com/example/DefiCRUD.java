@@ -10,6 +10,7 @@ import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,6 +39,7 @@ public class DefiCRUD {
                 d.titre = rs.getString("titre");
                 d.description = rs.getString("description");
                 d.dateCreation = rs.getTimestamp("dateCreation");
+                d.auteur = rs.getString("auteur");
                 
                 L.add(d); 
             }
@@ -53,5 +55,28 @@ public class DefiCRUD {
                 System.err.println(e.getMessage());
                 return null;
         }   
+    }
+
+
+    @DeleteMapping("/{userId}")
+    void delete(@PathVariable(value="userId") String id, HttpServletResponse response){
+        try (Connection connection = dataSource.getConnection()) { 
+
+            Statement stmt = connection.createStatement(); 
+            ResultSet rs = stmt.executeQuery("delete from Defis where idDefi = '" + id + "';"); 
+            
+            
+            
+        } catch(Exception e){
+            response.setStatus(404);
+            try{
+                response.getOutputStream().print(e.getMessage());
+            } catch(Exception e2){
+                System.err.println(e2.getMessage());
+            }
+            System.err.println(e.getMessage());
+            
+        }
+
     }
 }
