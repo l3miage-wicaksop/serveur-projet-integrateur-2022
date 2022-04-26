@@ -76,4 +76,34 @@ public class ChamiCRUD {
             return null;
         }
     }
+
+    @GetMapping("/{userId}")
+    Chami read(@PathVariable(value="userId") String id, HttpServletResponse response){
+        try (Connection connection = dataSource.getConnection()) { 
+
+            Statement stmt = connection.createStatement(); 
+            ResultSet rs = stmt.executeQuery("SELECT * FROM chamis where userId ='" + id +"'"); 
+            Chami c = new Chami(); 
+            while (rs.next()) { 
+                
+                c.login = rs.getString("login"); 
+                c.age = rs.getInt("age"); 
+                c.description = rs.getString("age");
+                c.userId = id;
+            }
+            
+            
+            return c;
+            
+        } catch(Exception e){
+            response.setStatus(404);
+            try{
+                response.getOutputStream().print(e.getMessage());
+            } catch(Exception e2){
+                System.err.println(e2.getMessage());
+            }
+            System.err.println(e.getMessage());
+            return null;
+        }
+    }
 }
