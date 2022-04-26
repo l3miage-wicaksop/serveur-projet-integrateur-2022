@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -105,5 +106,29 @@ public class ChamiCRUD {
             System.err.println(e.getMessage());
             return null;
         }
+    }
+
+    @PutMapping("/{userId}")
+    Chami update(@PathVariable(value="userId") String id, @RequestBody Chami c, HttpServletResponse response){
+        try (Connection connection = dataSource.getConnection()) { 
+
+            Statement stmt = connection.createStatement(); 
+            ResultSet rs = stmt.executeQuery("update Chamis set age = " + c.age + ", login = '" + c.login + "',  description = '" + c.description + "' where userid = '" + id+"';"); 
+            
+            
+            return c;
+            
+        } catch(Exception e){
+            response.setStatus(404);
+            try{
+                response.getOutputStream().print(e.getMessage());
+            } catch(Exception e2){
+                System.err.println(e2.getMessage());
+            }
+            System.err.println(e.getMessage());
+            return null;
+        }
+
+
     }
 }
