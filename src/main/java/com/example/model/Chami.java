@@ -1,17 +1,34 @@
 package com.example.model;
 
+import lombok.*;
+
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Getter
+@Setter
+@Table(name="chamis")
 public class Chami {
 
-    
-    public String userId;
-    public int age;
-    public String login;
-    public String description;
-    public List<Defi> defis;
+    @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private String userId;
 
+    @Column(name = "age")
+    private int age;
 
+    @Column(name = "login")
+    private String login;
+
+    @Column(name = "description")
+    private String description;
+
+    @OneToMany
+    private List<Defi> defis;
     
     public int getAge() {
         return age;
