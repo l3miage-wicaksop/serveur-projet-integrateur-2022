@@ -1,5 +1,5 @@
 package com.example;
-
+import java.sql.Timestamp;
 import com.example.model.Chami;
 import com.example.model.Defi;
 
@@ -15,14 +15,26 @@ public class ObjectBuilder {
     }
 
     public void V0DefisCreator(){
+        
+        String str1 = "15/03/2021 16:03";
+        Timestamp timestamp1 = Timestamp.valueOf(str1);  
+        
+        String descriptionD1 = "";
+        descriptionD1 += "- Rendez vous à l'arrêt de bus \"Maison du tourisme - Hubert Dubedout\".\n ";
+        descriptionD1 += "- Cherche ce qu'il faut pour faire un méchoui.\n ";
+        
         Defi d1 = Defi.builder()
             .idDefi("D127")
             .titre("Le Méchoui")
             .auteur("carobis")
-            .description("- Rendez-vous à l''arrêt Victor-Hugo\n- C''est l''été. Tu as besoin de grand air.\n- Demande à quelqu''un où est la maison de la montagne.\n- Longe le tram pour y aller. Tu demanderas où on peut voir des chamois.\n- Vas pas trop vite ! Les chamoix sont en plein centre ville !\n- Grenoble c''est la ville du béton, mais c''est aussi la capitale des Alpes.\n- Fait attention tu pourrais te faire écraser par des pachidermes !\n- (Q1) Combien d''écureuils (compter uniquement les tout plats) ?\n- (Q2) Combien de chamois ?\n- (Q3) Combien d''éléphants ?")
+            .description(descriptionD1)
+            .dateCreation(timestamp1)
             .build();
         
 
+        String str2 = "01/04/2021 15:03";
+        Timestamp timestamp2 = Timestamp.valueOf(str2);  
+        
         String descriptionD2 = "";
         descriptionD2 += "- Rendez vous à l'arrêt de bus \"Grenoble - hôtel de ville\".\n";
         descriptionD2 += "- Passe par \"l'orangerie\".\n";
@@ -40,7 +52,49 @@ public class ObjectBuilder {
             .titre("Le vert, je le mange !")
             .auteur("escribis")
             .description(descriptionD2)
+            .dateCreation(timestamp2)
             .build();
-    }
 
+        String str3 = "13/04/2021 12:03";
+        Timestamp timestamp3 = Timestamp.valueOf(str3);
+        
+        String descriptionD3 ="";
+        descriptionD3 += "- Rendez-vous à l'arrêt Victor Hugo\n";
+        descriptionD3 += "- Il tourne en rond pour le plaisir des petits. Cherche le.\n";
+        descriptionD3 += "- Si il n'y est pas demande à quelqu'un où il est quand il y est :-) \n";
+        descriptionD3 += "- Fait toi un selfie avec les 2 moutons en utilisant ton sens de la créativité.\n";
+        descriptionD3 += "- Si tu n'y arrives pas demande à quelqu'un qu'il/elle te tire un portrait.\n";
+    
+        Defi d3 = Defi.builder()
+            .idDefi("D151")
+            .titre("Ils tournent et rond.")
+            .auteur("nomoldu")
+            .description(descriptionD2)
+            .dateCreation(timestamp3)
+            .build();
+        
+        String str4 = "17/03/2021 12:03";
+        Timestamp timestamp4 = Timestamp.valueOf(str4);
+                
+        String descriptionD4 ="";
+        descriptionD4 += "- Rendez-vous à l'arrêt Victor-Hugo\n";
+        descriptionD4 += "- C'est l'été. Tu as besoin de grand air.\n";
+        descriptionD4 += "- Demande à quelqu'un où est la maison de la montagne.\n";
+        descriptionD4 += "- Longe le tram pour y aller. Tu demanderas où on peut voir des chamois.\n";
+        descriptionD4 += "- Vas pas trop vite ! Les chamoix sont en plein centre ville ! \n";
+        descriptionD4 += "- Grenoble c'est la ville du béton, mais c'est aussi la capitale des Alpes.\n";
+        descriptionD4 += "- Fait attention tu pourrais te faire écraser par des pachidermes ! \n";
+        descriptionD4 += "- (Q1) Combien d'écureuils (compter uniquement les tout plats) ?\n";
+        descriptionD4 += "- (Q2) Combien de chamois ?\n";
+        descriptionD4 += "- (Q3) Combien d'éléphants ?\n";
+    
+        Defi d4 = Defi.builder()
+            .idDefi("D189")
+            .titre("Et l'écureil alors ?")
+            .auteur("carobis")
+            .description(descriptionD4)
+            .dateCreation(timestamp4)
+            .build();
+    
+    }
 }
