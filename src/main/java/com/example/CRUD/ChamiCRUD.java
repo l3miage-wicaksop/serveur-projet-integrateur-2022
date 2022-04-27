@@ -58,7 +58,7 @@ public class ChamiCRUD {
             Chami newChami = Chami.builder()
                     .age(c.getAge())
                     .description(c.getDescription())
-                    .login(c.getLogin())
+                    .userId(id)
                     .build();
 
             chamiRepository.save(newChami);
@@ -101,7 +101,6 @@ public class ChamiCRUD {
 
             Chami changedChami = Chami.builder()
                     .userId(id)
-                    .login(c.getLogin())
                     .description(c.getDescription())
                     .age(c.getAge())
                     .build();
@@ -126,8 +125,8 @@ public class ChamiCRUD {
         try (Connection connection = dataSource.getConnection()) { 
 
             Statement stmt = connection.createStatement(); 
-            ResultSet rs = stmt.executeQuery("delete from Chamis where userId = '" + id + "';"); 
-            
+            // ResultSet rs = stmt.executeQuery("delete from Chamis where userId = '" + id + "';"); 
+            chamiRepository.deleteById(id);
             
             
         } catch(Exception e){
