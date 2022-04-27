@@ -36,10 +36,10 @@ public class DefiCRUD {
            
             while (rs.next()) { 
                 Defi d = new Defi(); 
-                d.idDefi = rs.getString("idDefi"); 
-                d.titre = rs.getString("titre");
-                d.description = rs.getString("description");
-                d.dateCreation = rs.getTimestamp("dateCreation");
+                // d.idDefi = rs.getString("idDefi"); 
+                // d.titre = rs.getString("titre");
+                // d.description = rs.getString("description");
+                // d.dateCreation = rs.getTimestamp("dateCreation");
                 
                 L.add(d); 
             }

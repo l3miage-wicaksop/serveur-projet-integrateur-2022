@@ -3,11 +3,13 @@ package com.example.model;
 import java.util.List;
 
 public class Chami {
-    private int age;
-    private String login;
-    private String description;
-    private String userId;
-    private List<Defi> defis;
+
+    
+    public String userId;
+    public int age;
+    public String login;
+    public String description;
+    public List<Defi> defis;
 
 
     
