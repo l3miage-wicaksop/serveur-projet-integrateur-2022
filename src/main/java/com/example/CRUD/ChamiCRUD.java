@@ -124,8 +124,6 @@ public class ChamiCRUD {
     void delete(@PathVariable(value="userId") String id, HttpServletResponse response){
         try (Connection connection = dataSource.getConnection()) { 
 
-            Statement stmt = connection.createStatement(); 
-            // ResultSet rs = stmt.executeQuery("delete from Chamis where userId = '" + id + "';"); 
             chamiRepository.deleteById(id);
             
             
