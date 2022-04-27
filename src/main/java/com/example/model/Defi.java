@@ -3,8 +3,10 @@ package com.example.model;
 import java.sql.Timestamp;
 
 public class Defi {
-    public String idDefi;
-    public String titre;
-    public String description;
-    public Timestamp dateCreation;
+    private String idDefi;
+    private String titre;
+    private String description;
+    private Timestamp dateCreation;
+    private Chami auteur;
+    
 }

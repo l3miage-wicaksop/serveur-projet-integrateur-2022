@@ -1,10 +1,13 @@
 package com.example.model;
 
+import java.util.List;
+
 public class Chami {
-    public int age;
-    public String login;
-    public String description;
-    public String userId;
+    private int age;
+    private String login;
+    private String description;
+    private String userId;
+    private List<Defi> defis;
 
 
     
