@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface DefiRepository extends JpaRepository<Defi, String> {
-
+    Defi getByUserId(String userId);
 }

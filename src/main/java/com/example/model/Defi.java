@@ -2,7 +2,6 @@ package com.example.model;
 
 import lombok.*;
 
-import javax.persistence.Entity;
 import javax.persistence.*;
 import javax.persistence.Table;
 import java.sql.Timestamp;
@@ -14,12 +13,14 @@ import java.sql.Timestamp;
 @Builder
 @Getter
 @Setter
-@ToString
+// @ToString
 @Table(name="defis")
 public class Defi {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @Column(name="iddefi")
+    // @GeneratedValue(strategy= GenerationType.IDENTITY)
+    @GeneratedValue()
     private String idDefi;
 
     @Column(name="titre")
@@ -31,8 +32,8 @@ public class Defi {
     @Column(name="datecreation")
     private Timestamp dateCreation;
 
-    @Column(name="auteur")
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="auteur")
     private Chami auteur;
     
 }
