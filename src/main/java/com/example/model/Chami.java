@@ -1,10 +1,13 @@
-package com.example;
+package com.example.model;
 
 public class Chami {
     public int age;
     public String login;
     public String description;
     public String userId;
+
+
+    
     public int getAge() {
         return age;
     }

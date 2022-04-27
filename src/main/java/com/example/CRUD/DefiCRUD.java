@@ -1,4 +1,4 @@
-package com.example;
+package com.example.CRUD;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -7,6 +7,8 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+
+import com.example.model.Defi;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
