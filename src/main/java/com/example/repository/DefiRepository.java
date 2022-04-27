@@ -8,6 +8,6 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-interface DefiRepository extends JpaRepository<Defi, String> {
+public interface DefiRepository extends JpaRepository<Defi, String> {
 
 }
