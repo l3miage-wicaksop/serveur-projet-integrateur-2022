@@ -58,7 +58,8 @@ public class ChamiCRUD {
             Chami newChami = Chami.builder()
                     .age(c.getAge())
                     .description(c.getDescription())
-                    .userId(id)
+                    .login(id)
+                    .ville(c.getVille())
                     .build();
 
             chamiRepository.save(newChami);
@@ -80,7 +81,8 @@ public class ChamiCRUD {
     @GetMapping("/{userId}")
     Chami read(@PathVariable(value="userId") String id, HttpServletResponse response){
         try (Connection connection = dataSource.getConnection()) {
-            Chami chami = chamiRepository.getByUserId(id);
+            
+            Chami chami = chamiRepository.getBylogin(id);
             return chami;
             
         } catch(Exception e){
@@ -100,9 +102,10 @@ public class ChamiCRUD {
         try (Connection connection = dataSource.getConnection()) { 
 
             Chami changedChami = Chami.builder()
-                    .userId(id)
+                    .login(id)
                     .description(c.getDescription())
                     .age(c.getAge())
+                    .ville(c.getVille())
                     .build();
 
             chamiRepository.save(changedChami);

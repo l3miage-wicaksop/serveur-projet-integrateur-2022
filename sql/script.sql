@@ -1,8 +1,6 @@
 CREATE TABLE IF NOT EXISTS chamis (
-    userId varchar(20) NOT NULL,
-    login varchar(20),
-    age INTEGER,
-    description varchar(50)
+    login varchar(20) NOT NULL,
+    age INTEGER
 );
 
 -- CREATE TABLE IF NOT EXISTS visite (
@@ -27,11 +25,22 @@ CREATE TABLE IF NOT EXISTS defis (
     -- motsCles varChar(30)
 );
 
-insert into chamis (userid, login, age) values ('D132','carobis', 21 );
-insert into chamis (userid, login, age) values ('D99','escribis', 43 );
-insert into chamis (userid, login, age) values ('D22' ,'momo', 38 );
-insert into chamis (userid, login, age) values ('D102','nomoldu', 20 );
-insert into chamis (userid, login, age) values ('D66', 'python38', 18 );
-insert into chamis (userid, login, age) values ('D32', 'yes4moldus', 38 );
+insert into chamis (login, age) values ('carobis', 21 );
+insert into chamis (login, age) values ('escribis', 43 );
+insert into chamis (login, age) values ('momo', 38 );
+insert into chamis (login, age) values ('nomoldu', 20 );
+insert into chamis (login, age) values ('python38', 18 );
+insert into chamis (login, age) values ('yes4moldus', 38 );
 
-efi', 'wow le premier!', '2022-04-26 19:10:25-07')
+
+
+
+
+-- V1
+
+insert into chamis (login, age, ville, description) values ('carobis', 21, 'Grenoble','- J''aime la cuisine mais je ne sais pas la faire :-(\n- J''aimerais bien cette année que ChaGra 2022 aille pour Greenpease Grenoble.\n- Je suis bénévole là bas et on a besoin d''une aide financière.- Votez Greenpease.');
+insert into chamis (login, age, ville, description) values ('escribis', 43, 'Grenoble', '- Bravo à tous pour vos contributions. C''est cool !\n Pour cette année pour ChaGra 2022 on pourrait voir avec la MDA.\n- Au passage vous devriez vous s''inscrire sur le site contribulle.org\n- Pour contribuer à quelque chose d''utile ca se passe là bas.');
+insert into chamis (login, age, ville, description) values ('momo', 38, 'Gières',  '- J''aime faire la cuisine mais mes enfants aiment pas ! Juste MacDo :-(\n- ChaGra 2022 pour Wikipedia ou openstreetmap\n- Lundis soir c''est Mapathon https://turbine.coop/evenement/missingmaps-mapathon-enligne/');
+insert into chamis (login, age, ville, description) values ('nomoldu', 20, 'Saint Martin d''Hères', '- Merci momo ! C''est cool. Contente d''être une ChaMise !\n- C''est comme ça qu''on dit ?\n- Sinon faudra repasser et ça c''est pour moi :-)\n- Allez voir https://turbine.coop/programmation/ et les mapathons.' );
+insert into chamis (login, age, ville, description) values ('python38', 18, 'Echirolles', '- Pas de défi créé pour l''instant mais je vais m''y mettre.\n- Dommage qu''il y ai pas de moutons à grenoble.\n- Ou alors sinon il faut me dire...\n- Je crois que je vais faire un défis Street Art à Echirolles\n- Il y en a un juste à coté de chez moi.\n- Pour ChaGra 2022 ça pourrait aller au secours populaire.\n- Autour de moi y a de besoins. Avec le covid maintenant ça craint !' );
+insert into chamis (login, age, ville, description) values ('yes4moldus', 38, 'Gières', '- J''aime faire la cuisine mais mes enfants aiment pas ! Juste MacDo :-(\n- ChaGra 2022 -> https://www.clown-hopital.com/\n- Vous avez vu https://www.handigmatic.org ?' );

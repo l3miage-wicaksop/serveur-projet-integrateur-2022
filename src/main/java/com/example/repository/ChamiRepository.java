@@ -9,5 +9,5 @@ import java.util.List;
 
 @Repository
 public interface ChamiRepository extends JpaRepository<Chami, String> {
-    Chami getByUserId(String userId);
+    Chami getBylogin(String login);
 }
