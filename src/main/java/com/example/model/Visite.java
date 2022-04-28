@@ -16,20 +16,31 @@ import java.sql.Timestamp;
 @Builder
 @Getter
 @Setter
-
 public class Visite  {
     
+   
+
     @Id
-    private String idViste;
+    @Column(name="id_visite")
+    private String idVisite;
     
     
-    
+    @Column(name = "date")
     private Timestamp date;
+    
+    @Column(name = "status")
     private boolean status;
+    
+    @Column(name = "temps")
     private int temps;
 
+    @Column(name = "commentaire")
     private String commentaire;
 
-    @Id
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="visiteur")
+    @JsonIgnoreProperties("visites")
+    private Chami visiteur;
+    
 
 }

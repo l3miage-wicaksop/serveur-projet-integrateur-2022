@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface VisiteRepository extends JpaRepository <Visite, String> {
     
-  Visite getByVisteId(String visiteID);
+  Visite getByIdVisite(String idVisite);
 
 }
