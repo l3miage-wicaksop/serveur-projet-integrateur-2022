@@ -39,8 +39,8 @@ public class ChamiCRUD {
                 Chami u = new Chami(); 
                 u.login = rs.getString("login"); 
                 u.age = rs.getInt("age"); 
-                u.description = rs.getString("description");
-                u.userId = rs.getString("userId");
+                // u.description = rs.getString("description");
+                // u.userId = rs.getString("userId");
                 L.add(u); 
             }
             return L;
@@ -63,7 +63,7 @@ public class ChamiCRUD {
         try (Connection connection = dataSource.getConnection()) { 
 
             Statement stmt = connection.createStatement(); 
-            ResultSet rs = stmt.executeQuery("insert into chamis (userId, description, login, age) values('" + id + "','"+ c.description + "', '" + c.login + "'," + c.age + ")" ); 
+            ResultSet rs = stmt.executeQuery("insert into chamis (login, age) values('" +  c.login + "'," + c.age + ")" ); 
 
             return c;
             
@@ -84,14 +84,13 @@ public class ChamiCRUD {
         try (Connection connection = dataSource.getConnection()) { 
 
             Statement stmt = connection.createStatement(); 
-            ResultSet rs = stmt.executeQuery("SELECT * FROM chamis where userId ='" + id +"'"); 
+            ResultSet rs = stmt.executeQuery("SELECT * FROM chamis where login ='" + id +"'"); 
             Chami c = new Chami(); 
             while (rs.next()) { 
                 
                 c.login = rs.getString("login"); 
                 c.age = rs.getInt("age"); 
-                c.description = rs.getString("age");
-                c.userId = id;
+
             }
             
             
@@ -114,7 +113,7 @@ public class ChamiCRUD {
         try (Connection connection = dataSource.getConnection()) { 
 
             Statement stmt = connection.createStatement(); 
-            ResultSet rs = stmt.executeQuery("update Chamis set age = " + c.age + ", login = '" + c.login + "',  description = '" + c.description + "' where userid = '" + id+"';"); 
+            ResultSet rs = stmt.executeQuery("update Chamis set login = '" + c.login + "',  age = " + c.age + " where login = '" + id+"';"); 
             
             return c;
             
@@ -135,7 +134,7 @@ public class ChamiCRUD {
         try (Connection connection = dataSource.getConnection()) { 
 
             Statement stmt = connection.createStatement(); 
-            ResultSet rs = stmt.executeQuery("delete from Chamis where userId = '" + id + "';"); 
+            ResultSet rs = stmt.executeQuery("delete from Chamis where login = '" + id + "';"); 
             
             
             
