@@ -3,6 +3,9 @@ package com.example.model;
 import lombok.*;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.List;
 
 @Entity
@@ -16,7 +19,7 @@ public class Chami {
 
     // userId est le login
     @Id
-    @Column(name="user_id")
+    @Column(name="userID")
     private String userId;
 
     @Column(name = "age")
@@ -26,6 +29,7 @@ public class Chami {
     private String description;
 
     @OneToMany(mappedBy = "auteur")
+    @JsonIgnoreProperties("auteur") // to avoid bidirectionnal infinite loop
     private List<Defi> defis;
     
     public int getAge() {
