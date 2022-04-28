@@ -31,12 +31,12 @@ public class Chami {
     @Column(name="ville")
     private String ville;
 
-    @OneToMany(mappedBy = "auteur")
-    @JsonIgnoreProperties("auteur") // to avoid bidirectionnal infinite loop
+    @OneToMany(mappedBy = "auteur", fetch = FetchType.EAGER)
+    // @JsonIgnoreProperties("auteur") // to avoid bidirectionnal infinite loop
     private List<Defi> defis;
 
-    @OneToMany(mappedBy = "visiteur")
-    @JsonIgnoreProperties("visiteur") // to avoid bidirectionnal infinite loop
+    @OneToMany(mappedBy = "visiteur", fetch = FetchType.EAGER)
+    // @JsonIgnoreProperties("visiteur") // to avoid bidirectionnal infinite loop
     private List<Visite> visites;
     
     
