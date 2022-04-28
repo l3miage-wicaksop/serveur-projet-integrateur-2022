@@ -66,7 +66,11 @@ public class ObjectBuilder {
         Defi d2 = Defi.builder()
             .idDefi("D145")
             .titre("Le vert, je le mange !")
+<<<<<<< HEAD
             .auteur(chamiRepository.getById("escribis"))
+=======
+            .auteur(chamiRepository.getBylogin("escribis"))
+>>>>>>> 19dfb0009dccc4f9ff10e6b717285512f5dca74a
             .description(descriptionD2)
             .dateCreation(timestamp2)
             .build();

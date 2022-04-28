@@ -106,7 +106,6 @@ public class DefiCRUD {
     @PostMapping("/{idDefi}")
     Defi create(@PathVariable(value="idDefi") String id, @RequestBody Defi c, HttpServletResponse response) {
         try (Connection connection = dataSource.getConnection()) {  
-            
             //JSON to send to check
             // {
             //     "titre": "test",
@@ -120,6 +119,8 @@ public class DefiCRUD {
             //     "dateCreation":"2022-04-26T16:18:25.000+00:00"
             // }
             
+            //Find Chami for Defi creation
+            Chami chamiAuteur = chamiRepository.findById(c.getAuteur().getLogin()).get();
 
             //Generate a next Id for Defi
             List<Defi> defis = defiRepository.findAll();
@@ -128,8 +129,6 @@ public class DefiCRUD {
             String newDefiId = "D" + defiIdInt;
 
             
-            //Find Chami for Defi creation
-            Chami chamiAuteur = chamiRepository.findById(c.getAuteur().getLogin()).get();
 
             Defi newDefi = Defi.builder()
                     .idDefi(newDefiId)
