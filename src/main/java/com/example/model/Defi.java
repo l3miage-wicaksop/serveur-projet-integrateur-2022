@@ -22,8 +22,6 @@ public class Defi {
 
     @Id
     @Column(name="iddefi")
-    // @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @GeneratedValue()
     private String idDefi;
 
     @Column(name="titre")
@@ -38,7 +36,6 @@ public class Defi {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="auteur")
-    @JsonIgnoreProperties("defis")
     private Chami auteur;
     
 }

@@ -105,17 +105,21 @@ public class DefiCRUD {
 
     @PostMapping("/{idDefi}")
     Defi create(@PathVariable(value="idDefi") String id, @RequestBody Defi c, HttpServletResponse response) {
-        try (Connection connection = dataSource.getConnection()) {
+        try (Connection connection = dataSource.getConnection()) {  
             
-            //Find Chami for Defi creation
-            // Chami chamiAuteur = chamiRepository.getByUserId(c.getAuteur().getUserId());
-            Defi newDefi = new Defi();
-            newDefi.setDateCreation(c.getDateCreation());
-            newDefi.setDescription(c.getDescription());
-            newDefi.setTitre(c.getTitre());
-            newDefi.setIdDefi(id);
-            Chami chamiAuteur = chamiRepository.getById(c.getAuteur().getLogin());
-            newDefi.setAuteur(chamiAuteur);
+            //JSON to send to check
+            // {
+            //     "titre": "test",
+            //     "description":"juste pour un test de POST",
+            //     "auteur": {
+            //         "login":"escribis",
+            //         "age":22,
+            //         "description": "vlalavlavl",
+            //         "ville":"Grenoble"
+            //     },
+            //     "dateCreation":"2022-04-26T16:18:25.000+00:00"
+            // }
+            
 
             //Generate a next Id for Defi
             List<Defi> defis = defiRepository.findAll();
@@ -124,13 +128,16 @@ public class DefiCRUD {
             String newDefiId = "D" + defiIdInt;
 
             
+            //Find Chami for Defi creation
+            Chami chamiAuteur = chamiRepository.findById(c.getAuteur().getLogin()).get();
 
-            // Defi newDefi = Defi.builder()
-            //         .idDefi(id)
-            //         .auteur(chamiAuteur)
-            //         .dateCreation(c.getDateCreation())
-            //         .description(c.getDescription())
-            //         .build();
+            Defi newDefi = Defi.builder()
+                    .idDefi(newDefiId)
+                    .titre(c.getTitre())
+                    .auteur(chamiAuteur)
+                    .dateCreation(c.getDateCreation())
+                    .description(c.getDescription())
+                    .build();
 
             defiRepository.save(newDefi);
 

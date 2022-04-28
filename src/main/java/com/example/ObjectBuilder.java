@@ -15,12 +15,12 @@ public class ObjectBuilder {
     DefiRepository defiRepository;
 
     public void V0ChamisCreator(){
-        Chami c1 = Chami.builder().userId("carobis").age(21).build();
-        Chami c2 = Chami.builder().userId("escribis").age(43).build();
-        Chami c3 = Chami.builder().userId("momo").age(38).build();
-        Chami c4 = Chami.builder().userId("nomoldu").age(20).build();
-        Chami c5 = Chami.builder().userId("python38").age(18).build();
-        Chami c6 = Chami.builder().userId("yes4moldus").age(38).build();
+        Chami c1 = Chami.builder().login("carobis").age(21).build();
+        Chami c2 = Chami.builder().login("escribis").age(43).build();
+        Chami c3 = Chami.builder().login("momo").age(38).build();
+        Chami c4 = Chami.builder().login("nomoldu").age(20).build();
+        Chami c5 = Chami.builder().login("python38").age(18).build();
+        Chami c6 = Chami.builder().login("yes4moldus").age(38).build();
 
         chamiRepository.save(c1);
         chamiRepository.save(c2);
@@ -42,7 +42,7 @@ public class ObjectBuilder {
         Defi d1 = Defi.builder()
             .idDefi("D127")
             .titre("Le Méchoui")
-            .auteur(chamiRepository.getByUserId("carobis"))
+            .auteur(chamiRepository.getBylogin("carobis"))
             .description(descriptionD1)
             .dateCreation(timestamp1)
             .build();
@@ -66,7 +66,7 @@ public class ObjectBuilder {
         Defi d2 = Defi.builder()
             .idDefi("D145")
             .titre("Le vert, je le mange !")
-            .auteur(chamiRepository.getByUserId("escribis"))
+            .auteur(chamiRepository.getById("escribis"))
             .description(descriptionD2)
             .dateCreation(timestamp2)
             .build();
@@ -84,7 +84,7 @@ public class ObjectBuilder {
         Defi d3 = Defi.builder()
             .idDefi("D151")
             .titre("Ils tournent et rond.")
-            .auteur(chamiRepository.getByUserId("escribis"))
+            .auteur(chamiRepository.getBylogin("escribis"))
             .description(descriptionD3)
             .dateCreation(timestamp3)
             .build();
@@ -107,7 +107,7 @@ public class ObjectBuilder {
         Defi d4 = Defi.builder()
             .idDefi("D189")
             .titre("Et l'écureil alors ?")
-            .auteur(chamiRepository.getByUserId("carobis"))
+            .auteur(chamiRepository.getBylogin("carobis"))
             .description(descriptionD4)
             .dateCreation(timestamp4)
             .build();

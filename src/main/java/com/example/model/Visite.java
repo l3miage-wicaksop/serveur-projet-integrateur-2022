@@ -11,36 +11,68 @@ import java.sql.Timestamp;
 
 
 @Entity
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Getter
 @Setter
-public class Visite  {
-    
-   
+/* 
 
+Evaluation :
+  - Réponse :
+      Question : 1
+      Réponse :
+  - Photo :
+      Label : 2
+      Image : ../materiels/visite/V151-45-2.png
+
+Commentaire :
+  - J'ai mis un temps à capter le rond et les petits.
+  - Après je sais pas si vous avez essayé mais pour le selfie c'est coton !
+  - J'en ai quand même fait un mais on voit pas les moutons !!!*/
+public class Visite{
+    
     @Id
     @Column(name="id_visite")
     private String idVisite;
+
+    @Column(name="id_defi")
+    private String idDefi;
     
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="visiteur")
+    private Chami visiteur;
+     
+    @Column(name = "date_de_visite")
+    private Timestamp dateDeVisite;
     
-    @Column(name = "date")
-    private Timestamp date;
-    
+    @Column(name = "mode")
+    private boolean mode;
+
+    @Column(name = "points")
+    private int points;
+
+    @Column(name = "score")
+    private int score;
+
     @Column(name = "status")
     private boolean status;
     
     @Column(name = "temps")
     private int temps;
 
+    @Column(name = "indices")
+    private int indices;
+
     @Column(name = "commentaire")
     private String commentaire;
-
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="visiteur")
-    @JsonIgnoreProperties("visites")
-    private Chami visiteur;
+    
+    public boolean getMode(){
+        return this.mode;
+    }
+    public boolean getStatus(){
+        return this.status;
+    }
     
 
 }
