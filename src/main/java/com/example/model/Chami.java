@@ -17,16 +17,19 @@ import java.util.List;
 @Table(name="chamis")
 public class Chami {
 
-    // userId est le login
+    // login est le login
     @Id
-    @Column(name="userID")
-    private String userId;
+    @Column(name="login")
+    private String login;
 
     @Column(name = "age")
     private int age;
 
-    @Column(name = "description")
+    @Column(name = "description", length = 2000)
     private String description;
+
+    @Column(name="ville")
+    private String ville;
 
     @OneToMany(mappedBy = "auteur")
     @JsonIgnoreProperties("auteur") // to avoid bidirectionnal infinite loop
@@ -38,6 +41,14 @@ public class Chami {
     public void setAge(int age) {
         this.age = age;
     }
+    public void setVille(String ville){
+        this.ville = ville;
+    }
+
+    public String getVille(){
+        return this.ville;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -46,7 +57,7 @@ public class Chami {
     }
     @Override
     public String toString() {
-        return "Chami [age=" + age + ", description=" + description + ", login=" + userId + "]";
+        return "Chami [age=" + age + ", description=" + description + ", login=" + login + "]";
     }
 
     
