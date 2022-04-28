@@ -31,19 +31,12 @@ public class Chami {
     @OneToMany(mappedBy = "auteur")
     @JsonIgnoreProperties("auteur") // to avoid bidirectionnal infinite loop
     private List<Defi> defis;
+
+    @OneToMany(mappedBy = "visiteur")
+    @JsonIgnoreProperties("visiteur") // to avoid bidirectionnal infinite loop
+    private List<Visite> visites;
     
-    public int getAge() {
-        return age;
-    }
-    public void setAge(int age) {
-        this.age = age;
-    }
-    public String getDescription() {
-        return description;
-    }
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    
     @Override
     public String toString() {
         return "Chami [age=" + age + ", description=" + description + ", login=" + userId + "]";
