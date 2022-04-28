@@ -23,7 +23,7 @@ public class Defi {
     @Id
     @Column(name="iddefi")
     // @GeneratedValue(strategy= GenerationType.IDENTITY)
-    @GeneratedValue()
+    // @GeneratedValue()
     private String idDefi;
 
     @Column(name="titre")

@@ -35,9 +35,9 @@ public class Chami {
     // @JsonIgnoreProperties("auteur") // to avoid bidirectionnal infinite loop
     private List<Defi> defis;
 
-    @OneToMany(mappedBy = "visiteur", fetch = FetchType.EAGER)
+    // @OneToMany(mappedBy = "visiteur", fetch = FetchType.EAGER)
     // @JsonIgnoreProperties("visiteur") // to avoid bidirectionnal infinite loop
-    private List<Visite> visites;
+    // private List<Visite> visites;
     
     
    
