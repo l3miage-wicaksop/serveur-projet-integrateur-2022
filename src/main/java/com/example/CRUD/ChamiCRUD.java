@@ -52,13 +52,13 @@ public class ChamiCRUD {
 
 
     @PostMapping("/")
-    Chami create(String id, @RequestBody Chami c, HttpServletResponse response) {
+    Chami create(@RequestBody Chami c, HttpServletResponse response) {
         try (Connection connection = dataSource.getConnection()) {
 
             Chami newChami = Chami.builder()
                     .age(c.getAge())
                     .description(c.getDescription())
-                    .login(id)
+                    .login(c.getLogin())
                     .ville(c.getVille())
                     .prenom(c.getPrenom())
                     .nom(c.getNom())
