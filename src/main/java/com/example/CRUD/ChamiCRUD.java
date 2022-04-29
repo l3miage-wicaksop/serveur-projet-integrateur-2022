@@ -51,8 +51,8 @@ public class ChamiCRUD {
     }
 
 
-    @PostMapping("/{userId}")
-    Chami create(@PathVariable(value="userId") String id, @RequestBody Chami c, HttpServletResponse response) {
+    @PostMapping("/")
+    Chami create(String id, @RequestBody Chami c, HttpServletResponse response) {
         try (Connection connection = dataSource.getConnection()) {
 
             Chami newChami = Chami.builder()
