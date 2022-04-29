@@ -35,6 +35,12 @@ public class Chami {
     @Column(name="ville")
     private String ville;
 
+    @Column(name="prenom")
+    private String prenom;
+
+    @Column(name="nom")
+    private String nom;
+
     @OneToMany(mappedBy = "auteur")
     @LazyCollection(LazyCollectionOption.FALSE)
     @JsonManagedReference

@@ -60,6 +60,8 @@ public class ChamiCRUD {
                     .description(c.getDescription())
                     .login(id)
                     .ville(c.getVille())
+                    .prenom(c.getPrenom())
+                    .nom(c.getNom())
                     .build();
 
             chamiRepository.save(newChami);
@@ -105,6 +107,8 @@ public class ChamiCRUD {
                     .login(id)
                     .description(c.getDescription())
                     .age(c.getAge())
+                    .prenom(c.getPrenom())
+                    .nom(c.getNom())
                     .ville(c.getVille())
                     .build();
 
