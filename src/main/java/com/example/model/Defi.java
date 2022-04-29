@@ -22,11 +22,8 @@ public class Defi {
 
     @Id
     @Column(name="iddefi")
-<<<<<<< HEAD
-=======
     // @GeneratedValue(strategy= GenerationType.IDENTITY)
     // @GeneratedValue()
->>>>>>> 19dfb0009dccc4f9ff10e6b717285512f5dca74a
     private String idDefi;
 
     @Column(name="titre")
