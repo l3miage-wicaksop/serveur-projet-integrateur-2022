@@ -51,15 +51,17 @@ public class ChamiCRUD {
     }
 
 
-    @PostMapping("/{userId}")
-    Chami create(@PathVariable(value="userId") String id, @RequestBody Chami c, HttpServletResponse response) {
+    @PostMapping("/")
+    Chami create(@RequestBody Chami c, HttpServletResponse response) {
         try (Connection connection = dataSource.getConnection()) {
 
             Chami newChami = Chami.builder()
                     .age(c.getAge())
                     .description(c.getDescription())
-                    .login(id)
+                    .login(c.getLogin())
                     .ville(c.getVille())
+                    .prenom(c.getPrenom())
+                    .nom(c.getNom())
                     .build();
 
             chamiRepository.save(newChami);
@@ -105,6 +107,8 @@ public class ChamiCRUD {
                     .login(id)
                     .description(c.getDescription())
                     .age(c.getAge())
+                    .prenom(c.getPrenom())
+                    .nom(c.getNom())
                     .ville(c.getVille())
                     .build();
 

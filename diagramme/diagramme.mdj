@@ -188,13 +188,47 @@
 											"height": 13,
 											"text": "+description: String",
 											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAGAdXkShuIHohE=",
+											"_parent": {
+												"$ref": "AAAAAAGAYvqUYJCIF7Y="
+											},
+											"model": {
+												"$ref": "AAAAAAGAdXkSauIET6I="
+											},
+											"font": "Arial;13;0",
+											"left": 821,
+											"top": 138,
+											"width": 246,
+											"height": 13,
+											"text": "+prenom: String",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAGAdXlJR+Pcqzo=",
+											"_parent": {
+												"$ref": "AAAAAAGAYvqUYJCIF7Y="
+											},
+											"model": {
+												"$ref": "AAAAAAGAdXlJOePZjtI="
+											},
+											"font": "Arial;13;0",
+											"left": 821,
+											"top": 153,
+											"width": 246,
+											"height": 13,
+											"text": "+nom: String",
+											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 816,
 									"top": 73,
 									"width": 256,
-									"height": 68
+									"height": 98
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -207,7 +241,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 816,
-									"top": 141,
+									"top": 171,
 									"width": 256,
 									"height": 10
 								},
@@ -4187,6 +4221,24 @@
 							},
 							"name": "description",
 							"type": "String"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAGAdXkSauIET6I=",
+							"_parent": {
+								"$ref": "AAAAAAGAYvqUX5CAqvE="
+							},
+							"name": "prenom",
+							"type": "String"
+						},
+						{
+							"_type": "UMLAttribute",
+							"_id": "AAAAAAGAdXlJOePZjtI=",
+							"_parent": {
+								"$ref": "AAAAAAGAYvqUX5CAqvE="
+							},
+							"name": "nom",
+							"type": "String"
 						}
 					]
 				},
@@ -4692,7 +4744,8 @@
 							"_parent": {
 								"$ref": "AAAAAAGAYxg5q6nIzE4="
 							},
-							"name": "secret"
+							"name": "secret",
+							"type": ""
 						}
 					]
 				},
