@@ -25,12 +25,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
+@RestController
+@CrossOrigin(origins = "http://localhost:4200")
+@RequestMapping("/api/chamis")
 public class VisiteCRUD {
-    
-    @RestController
-    @CrossOrigin
-    @RequestMapping("/api/chamis")
-    public class ChamiCRUD {
+
         @Autowired
         private DataSource dataSource;
     
@@ -64,8 +63,8 @@ public class VisiteCRUD {
                 List<Visite> visites = visiteRepository.findAll();
 
                 if(visites.size()==0){
-                    int visiteIdIntByDefi = Integer.parseInt(v.getIdDefi().substring(v.getIdDefi().indexOf("D") + 1)) +1;
                     //VisiteId construction
+                    int visiteIdIntByDefi = Integer.parseInt(v.getIdDefi().substring(v.getIdDefi().indexOf("D") + 1)) +1;
                     newVisiteId = "V" + visiteIdIntByDefi + "-" + "1";
                 }
                 else{
@@ -187,9 +186,5 @@ public class VisiteCRUD {
     
         }
     
-
-
-
-
 }
-}
+
