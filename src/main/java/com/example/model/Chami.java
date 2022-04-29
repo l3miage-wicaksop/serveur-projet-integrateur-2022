@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -36,11 +37,13 @@ public class Chami {
 
     @OneToMany(mappedBy = "auteur")
     @LazyCollection(LazyCollectionOption.FALSE)
+    @JsonManagedReference
     //@JsonIgnoreProperties("auteur") // to avoid bidirectionnal infinite loop
     private List<Defi> defis;
 
     @OneToMany(mappedBy = "visiteur")
     @LazyCollection(LazyCollectionOption.FALSE)
+    @JsonManagedReference
     //@JsonIgnoreProperties("visiteur") // to avoid bidirectionnal infinite loop
     private List<Visite> visites;
     

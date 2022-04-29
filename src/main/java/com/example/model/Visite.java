@@ -5,17 +5,12 @@ import lombok.*;
 import javax.persistence.*;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.sql.Timestamp;
 
 
-@Entity
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
 /* 
 
 Evaluation :
@@ -30,6 +25,13 @@ Commentaire :
   - J'ai mis un temps à capter le rond et les petits.
   - Après je sais pas si vous avez essayé mais pour le selfie c'est coton !
   - J'en ai quand même fait un mais on voit pas les moutons !!!*/
+  @Entity
+  @Builder
+  @NoArgsConstructor
+  @AllArgsConstructor
+  @Getter
+  @Setter
+  @Table(name="visites")
 public class Visite{
     
     @Id
@@ -41,6 +43,7 @@ public class Visite{
     
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="visiteur")
+    @JsonBackReference
     private Chami visiteur;
      
     @Column(name = "date_de_visite")

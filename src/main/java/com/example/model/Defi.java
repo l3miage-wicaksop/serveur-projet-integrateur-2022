@@ -5,6 +5,7 @@ import lombok.*;
 import javax.persistence.*;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.sql.Timestamp;
@@ -38,6 +39,7 @@ public class Defi {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="auteur")
+    @JsonBackReference
     private Chami auteur;
     
 }
