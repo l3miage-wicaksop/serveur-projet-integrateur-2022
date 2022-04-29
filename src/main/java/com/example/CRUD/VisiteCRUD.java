@@ -24,13 +24,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
+@RestController
+@RequestMapping("/api/visites")
 public class VisiteCRUD {
-    
-    @RestController
-    @CrossOrigin
-    @RequestMapping("/api/chamis")
-    public class ChamiCRUD {
         @Autowired
         private DataSource dataSource;
     
@@ -54,9 +50,8 @@ public class VisiteCRUD {
             }   
         }
     
-    
-        @PostMapping("/{userId}")
-        Visite create(@PathVariable(value="userId") String id, @RequestBody Visite v, HttpServletResponse response) {
+        @PostMapping("/")
+        Visite create(@RequestBody Visite v, HttpServletResponse response) {
             try (Connection connection = dataSource.getConnection()) {
                 
                 String newVisiteId = "";
@@ -74,7 +69,7 @@ public class VisiteCRUD {
                     //Incremented visite id after "="
                     int visiteIdInt = Integer.parseInt(lastVisiteId.substring(lastVisiteId.indexOf("-") + 1)) +1;
                     //Take defiId for visite id construction
-                    int visiteIdIntByDefi = Integer.parseInt(v.getIdDefi().substring(v.getIdDefi().indexOf("D") + 1)) +1;
+                    int visiteIdIntByDefi = Integer.parseInt(v.getIdDefi().substring(v.getIdDefi().indexOf("D") + 1));
                     //VisiteId construction
                     newVisiteId = "V" + visiteIdIntByDefi + "-" + visiteIdInt;
                 }
@@ -120,7 +115,7 @@ public class VisiteCRUD {
         @GetMapping("/{userId}")
         Visite read(@PathVariable(value="userId") String id, HttpServletResponse response){
             try (Connection connection = dataSource.getConnection()) {
-                Visite visite = visiteRepository.getById(id);
+                Visite visite = visiteRepository.getByIdVisite(id);
                 return visite;
                 
             } catch(Exception e){
@@ -140,7 +135,8 @@ public class VisiteCRUD {
             try (Connection connection = dataSource.getConnection()) { 
     
                 Visite changedVisite = Visite.builder()
-                .idVisite(v.getIdVisite())
+                .idVisite(id)
+                .idDefi(v.getIdDefi())
                 .visiteur(v.getVisiteur())
                 .dateDeVisite(v.getDateDeVisite())
                 .mode(v.getMode())
@@ -191,5 +187,5 @@ public class VisiteCRUD {
 
 
 
-}
+
 }
