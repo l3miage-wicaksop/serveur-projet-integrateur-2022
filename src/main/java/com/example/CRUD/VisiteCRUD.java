@@ -24,7 +24,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @RestController
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/visites")
 public class VisiteCRUD {
         @Autowired
@@ -55,32 +59,27 @@ public class VisiteCRUD {
             try (Connection connection = dataSource.getConnection()) {
                 
                 String newVisiteId = "";
+                String defiIdWithoutD = v.getIdDefi().substring(v.getIdDefi().indexOf("D") + 1);
                 //Find all visites
-                List<Visite> visites = visiteRepository.findAll();
-
+                List<Visite> visites = visiteRepository.findVisiteByIdVisiteContaining(defiIdWithoutD);
+                
                 if(visites.size()==0){
-                    int visiteIdIntByDefi = Integer.parseInt(v.getIdDefi().substring(v.getIdDefi().indexOf("D") + 1)) +1;
                     //VisiteId construction
-                    newVisiteId = "V" + visiteIdIntByDefi + "-" + "1";
+                    newVisiteId = "V" + defiIdWithoutD + "-" + "1";
                 }
                 else{
+                    for (Visite visite : visites) {
+                        log.info(visite.getIdVisite());    
+                    }
+                    //Take defiId for visite id construction
+                    int defiIdInt = Integer.parseInt(defiIdWithoutD);
                     //Take last visite id
                     String lastVisiteId = visites.get(visites.size()-1).getIdVisite();
                     //Incremented visite id after "="
                     int visiteIdInt = Integer.parseInt(lastVisiteId.substring(lastVisiteId.indexOf("-") + 1)) +1;
-                    //Take defiId for visite id construction
-                    int visiteIdIntByDefi = Integer.parseInt(v.getIdDefi().substring(v.getIdDefi().indexOf("D") + 1));
                     //VisiteId construction
-                    newVisiteId = "V" + visiteIdIntByDefi + "-" + visiteIdInt;
+                    newVisiteId = "V" + defiIdInt + "-" + visiteIdInt;
                 }
-                
-
-                /*
-                JSON for verification
-                {
-
-                }
-                */
 
 
                 Visite newVisite = Visite.builder()
