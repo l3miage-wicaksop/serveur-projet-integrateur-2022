@@ -23,7 +23,7 @@ public class Chami {
 
     // login est le login
     @Id
-    @Column(name="login")
+    @Column(name="login", length=40)
     private String login;
 
     @Column(name = "age")
