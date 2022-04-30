@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/defis")
 public class DefiCRUD {
     @Autowired
@@ -103,8 +103,8 @@ public class DefiCRUD {
         }
     }
 
-    @PostMapping("/{idDefi}")
-    Defi create(@PathVariable(value="idDefi") String id, @RequestBody Defi c, HttpServletResponse response) {
+    @PostMapping("/")
+    Defi create( @RequestBody Defi c, HttpServletResponse response) {
         try (Connection connection = dataSource.getConnection()) {  
             //JSON to send to check
             // {
@@ -121,7 +121,7 @@ public class DefiCRUD {
             
             //Find Chami for Defi creation
             Chami chamiAuteur = chamiRepository.findById(c.getAuteur().getLogin()).get();
-
+            
             //Generate a next Id for Defi
             List<Defi> defis = defiRepository.findAll();
             String lastDefiId = defis.get(defis.size()-1).getIdDefi();
