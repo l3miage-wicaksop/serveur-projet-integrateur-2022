@@ -43,7 +43,7 @@ public class Visite{
     
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="visiteur")
-    @JsonBackReference
+    @JsonBackReference("visiteur")
     private Chami visiteur;
      
     @Column(name = "date_de_visite")

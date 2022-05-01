@@ -7,6 +7,7 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import java.sql.Timestamp;
 
@@ -39,7 +40,12 @@ public class Defi {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="auteur")
-    @JsonBackReference
+    @JsonBackReference("auteur")
     private Chami auteur;
+
+    @ManyToOne
+    @JoinColumn(name="arret")
+    @JsonBackReference("arret")
+    private Arret arret;
     
 }
