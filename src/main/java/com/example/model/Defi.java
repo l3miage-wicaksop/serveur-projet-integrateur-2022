@@ -40,12 +40,14 @@ public class Defi {
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="auteur")
-    @JsonBackReference("auteurDefi")
+    // @JsonBackReference("auteurDefi")
+    @JsonIgnoreProperties("defis")
     private Chami auteur;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="arret")
-    @JsonBackReference(value="arretDefi")
+    // @JsonBackReference(value="arretDefi")
+    @JsonIgnoreProperties("defis")
     private Arret arret;
 
     private String tmpArret;

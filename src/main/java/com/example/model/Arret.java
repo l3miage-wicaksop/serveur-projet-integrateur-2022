@@ -41,7 +41,7 @@ public class Arret {
 
     @OneToMany(mappedBy = "arret")
     @LazyCollection(LazyCollectionOption.FALSE)
-    @JsonManagedReference("arretDefi")
+    // @JsonManagedReference("arretDefi")
     private List<Defi> defis;
 
 }

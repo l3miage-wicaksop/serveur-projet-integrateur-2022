@@ -45,14 +45,14 @@ public class Chami {
 
     @OneToMany(mappedBy = "auteur")
     @LazyCollection(LazyCollectionOption.FALSE)
-    @JsonManagedReference("auteurDefi")
-    //@JsonIgnoreProperties("auteur") // to avoid bidirectionnal infinite loop
+    // @JsonManagedReference("auteurDefi")
+    @JsonIgnoreProperties("auteur") // to avoid bidirectionnal infinite loop
     private List<Defi> defis;
 
     @OneToMany(mappedBy = "visiteur")
     @LazyCollection(LazyCollectionOption.FALSE)
-    @JsonManagedReference("visiteur")
-    //@JsonIgnoreProperties("visiteur") // to avoid bidirectionnal infinite loop
+    // @JsonManagedReference("visiteur")
+    @JsonIgnoreProperties("visiteur") // to avoid bidirectionnal infinite loop
     private List<Visite> visites;
     
     
