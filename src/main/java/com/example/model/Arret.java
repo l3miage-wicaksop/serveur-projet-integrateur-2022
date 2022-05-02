@@ -9,6 +9,9 @@ import javax.persistence.*;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
@@ -36,8 +39,9 @@ public class Arret {
 
     private Double latitude;
 
-    @OneToMany(mappedBy = "arret", cascade = CascadeType.ALL)
-    @JsonManagedReference("arret")
+    @OneToMany(mappedBy = "arret")
+    @LazyCollection(LazyCollectionOption.FALSE)
+    @JsonManagedReference("arretDefi")
     private List<Defi> defis;
 
 }

@@ -9,8 +9,10 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import com.example.model.Arret;
 import com.example.model.Chami;
 import com.example.model.Defi;
+import com.example.repository.ArretRepository;
 import com.example.repository.ChamiRepository;
 import com.example.repository.DefiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +38,9 @@ public class DefiCRUD {
 
     @Autowired
     private ChamiRepository chamiRepository;
+
+    @Autowired
+    private ArretRepository arretRepository;
 
     @GetMapping("/")
     public List<Defi> allUsers(HttpServletResponse response){
@@ -86,6 +91,8 @@ public class DefiCRUD {
                     .auteur(d.getAuteur())
                     .titre(d.getTitre())
                     .dateCreation(d.getDateCreation())
+                    .arret(d.getArret())
+                    .tmpArret(d.getTmpArret())
                     .build();
 
             defiRepository.save(changedDefi);
@@ -121,6 +128,9 @@ public class DefiCRUD {
             
             //Find Chami for Defi creation
             Chami chamiAuteur = chamiRepository.findById(c.getAuteur().getLogin()).get();
+
+            //Find Arret for Defi creation
+            Arret arretDefi = arretRepository.findById(c.getArret().getCodeArret()).get();
             
             //Generate a next Id for Defi
             List<Defi> defis = defiRepository.findAll();
@@ -136,6 +146,7 @@ public class DefiCRUD {
                     .auteur(chamiAuteur)
                     .dateCreation(c.getDateCreation())
                     .description(c.getDescription())
+                    .arret(arretDefi)
                     .build();
 
             defiRepository.save(newDefi);
