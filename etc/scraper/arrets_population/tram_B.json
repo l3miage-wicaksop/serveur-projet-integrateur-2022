@@ -1,0 +1,194 @@
+[
+
+{
+    "nomArret": "Oxford",
+    "latitude": 45.205905,
+    "longitude": 5.699518,
+    "ville": "Grenoble "
+},
+{
+    "nomArret": "Marie-Louise Paris CEA",
+    "latitude": 45.202472,
+    "longitude": 5.70414,
+    "ville": "Grenoble"
+
+},
+{
+    "nomArret": "Cité Internationale",
+    "latitude": 45.195036,
+    "longitude": 5.711132,
+    "ville": "Grenoble"
+
+},
+{
+
+    "nomArret": "Palais de Justice Gare",
+    "latitude": 45.191208,
+    "longitude": 5.711698,
+    "ville": "Grenoble"
+
+
+
+},
+{
+
+    "nomArret": "Saint-Bruno",
+    "latitude": 45.188357,
+    "longitude": 5.713771,
+    "ville": "Grenoble"
+
+
+
+},
+{
+
+    "nomArret": "Gares",
+    "latitude": 45.190129,
+    "longitude": 5.715133,
+    "ville": "Grenoble"
+
+
+
+},
+{
+
+    "nomArret": "Alsace-Lorraine",
+    "latitude": 45.189394,
+    "longitude": 5.720282,
+    "ville": "Grenoble"
+
+
+
+},
+{
+
+    "nomArret": "Victor Hugo",
+    "latitude": 45.189851,
+    "longitude": 5.725127,
+    "ville": "Grenoble"
+
+
+
+},
+{
+    "nomArret": "Hubert Dubedout -Maison du Tourisme",
+    "latitude": 45.19017,
+    "longitude": 5.728253,
+    "ville": "Grenoble"
+
+
+},
+{
+    "nomArret": "Sainte-Claire Les Halles",
+    "latitude": 45.191352,
+    "longitude": 5.73065,
+    "ville": "Grenoble"
+},
+{
+
+    "nomArret": "Notre-Dame Musée",
+    "latitude": 45.193593,
+    "longitude": 5.732161,
+    "ville": "Grenoble"
+
+
+},
+{
+
+    "nomArret": "île Verte",
+    "latitude": 45.197275,
+    "longitude": 5.736771,
+    "ville": "Grenoble"
+
+
+},
+{
+
+    "nomArret": "La Tronche Hôpital",
+    "latitude":45.200624,
+    "longitude": 5.741216,
+    "ville": "La Tronche"
+
+
+
+
+},
+{
+
+    "nomArret": "Michallon",
+    "latitude":45.200321,
+    "longitude": 5.745457,
+    "ville": "La Tronche"
+
+
+},
+{
+    "nomArret": "Grand Sablon",
+    "latitude":45.199025,
+    "longitude": 5.74985,
+    "ville": "La Tronche"
+},
+{
+
+    "nomArret": "Les Taillées Universités",
+    "latitude":45.192239,
+    "longitude": 5.757811,
+    "ville": "Saint-Martin-d'Hères"
+
+
+},
+{
+    "nomArret": "Gabriel Fauré",
+    "latitude":45.192301,
+    "longitude": 5.764629,
+    "ville": "Saint-Martin-d'Hères"
+
+
+},
+{
+
+    "nomArret": "Bibliothèques Universités",
+    "latitude": 45.192334,
+    "longitude": 5.770933,
+    "ville": "Saint-Martin-d'Hères"
+
+
+
+},
+{
+
+    "nomArret": "Condillac Universités",
+    "latitude": 45.189077,
+    "longitude": 5.774383,
+    "ville": "Saint-Martin-d'Hères"
+
+},
+{
+    "nomArret": "Mayencin - Champ Roman",
+    "latitude": 45.184732,
+    "longitude": 5.77907,
+    "ville": "Gières"
+
+
+
+},
+{
+
+    "nomArret": "Gières Gare - Universités",
+    "latitude": 45.185446,
+    "longitude": 5.785602,
+    "ville": "Gières"
+
+
+},
+{
+    "nomArret": "Plaine des Sports",
+    "latitude":45.18768,
+    "longitude": 5.78455,
+    "ville": "Gières"
+
+
+
+}
+
+]
