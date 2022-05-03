@@ -1,0 +1,26 @@
+[
+    {
+        "nomArret": "La Poya",
+        "latitude": 45.197106,
+        "longitude": 5.672273,
+        "ville": "Fontaine "
+    },
+    {
+        "nomArret": "Charles Michels",
+        "latitude": 45.19383,
+        "longitude": 5.680198,
+        "ville": "Fontaine "
+    },
+    {
+        "nomArret": "Fontaine Hôtel de Ville - La Source",
+        "latitude": 45.191301,
+        "longitude": 5.687403,
+        "ville": "Fontaine "
+    },
+    {
+        "nomArret": "Louis Maisonnat",
+        "latitude": 45.189202,
+        "longitude": 5.694262,
+        "ville": "Fontaine "
+    }
+]
