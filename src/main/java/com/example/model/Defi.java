@@ -6,10 +6,13 @@ import javax.persistence.*;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 
 @Entity
@@ -20,6 +23,7 @@ import java.sql.Timestamp;
 @Setter
 // @ToString
 @Table(name="defis")
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
 public class Defi {
 
     @Id
@@ -41,14 +45,20 @@ public class Defi {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="auteur")
     // @JsonBackReference("auteurDefi")
-    @JsonIgnoreProperties("defis")
+    // @JsonIgnoreProperties("defis")
     private Chami auteur;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="arret")
     // @JsonBackReference(value="arretDefi")
-    @JsonIgnoreProperties("defis")
+    // @JsonIgnoreProperties("defi")
+    // @JsonIgnoreProperties(ignoreUnknown = true)
     private Arret arret;
+
+    @OneToMany(mappedBy = "defi")
+    @JsonIgnoreProperties("defi")
+    // @JsonIgnoreProperties(ignoreUnknown = true)
+    private List<Visite> visites;
 
     private String tmpArret;
     

@@ -21,6 +21,7 @@ import java.util.List;
 @Getter
 @Setter
 @Table(name="chamis")
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
 public class Chami {
 
     // login est le login
@@ -46,13 +47,13 @@ public class Chami {
     @OneToMany(mappedBy = "auteur")
     @LazyCollection(LazyCollectionOption.FALSE)
     // @JsonManagedReference("auteurDefi")
-    @JsonIgnoreProperties("auteur") // to avoid bidirectionnal infinite loop
+    // @JsonIgnoreProperties("auteur") // to avoid bidirectionnal infinite loop
     private List<Defi> defis;
 
     @OneToMany(mappedBy = "visiteur")
     @LazyCollection(LazyCollectionOption.FALSE)
     // @JsonManagedReference("visiteur")
-    @JsonIgnoreProperties("visiteur") // to avoid bidirectionnal infinite loop
+    // @JsonIgnoreProperties("visiteur")// to avoid bidirectionnal infinite loop
     private List<Visite> visites;
     
     

@@ -7,7 +7,10 @@ import java.util.List;
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
@@ -18,6 +21,7 @@ import org.hibernate.annotations.LazyCollectionOption;
 @Builder
 @Getter
 @Setter
+@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
 @Table(name="arrets")
 public class Arret {
     @Id
@@ -42,6 +46,7 @@ public class Arret {
     @OneToMany(mappedBy = "arret")
     @LazyCollection(LazyCollectionOption.FALSE)
     // @JsonManagedReference("arretDefi")
+    
     private List<Defi> defis;
 
 }
