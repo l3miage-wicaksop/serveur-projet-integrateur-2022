@@ -136,10 +136,10 @@ public class ObjectBuilder {
         commentaire += "- Après évidemment de l'autre coté c'est plus facile.\n";
         commentaire += "- En fait je trouve qu'il est un peu trop facile => j'ai mis 3 étoiles.\n";
 
-        
+        Defi d = defiRepository.findById("D127").get();
         
         Visite v1 = Visite.builder()
-            .idDefi("D127")
+            .defi(d)
             .idVisite("V127-1")
             .visiteur(chamiRepository.getBylogin("nomoldus"))
             .dateDeVisite(timestamp)

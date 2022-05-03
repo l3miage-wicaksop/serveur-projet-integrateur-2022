@@ -6,7 +6,9 @@ import javax.persistence.*;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.sql.Timestamp;
 
@@ -32,18 +34,24 @@ Commentaire :
   @Getter
   @Setter
   @Table(name="visites")
+  @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
 public class Visite{
     
     @Id
     @Column(name="id_visite")
     private String idVisite;
 
-    @Column(name="id_defi")
-    private String idDefi;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="defi")
+    // @JsonIgnoreProperties("visites")
+    // @JsonIgnoreProperties(ignoreUnknown = true)
+    private Defi defi;
     
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="visiteur")
-    @JsonBackReference("visiteur")
+    // @JsonBackReference("visiteur")
+    // @JsonIgnoreProperties("visites")
+    // @JsonIgnoreProperties(ignoreUnknown = true)
     private Chami visiteur;
      
     @Column(name = "date_de_visite")
