@@ -10,8 +10,9 @@ import java.util.List;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import com.example.model.Defi;
 import com.example.model.Visite;
-
+import com.example.repository.DefiRepository;
 import com.example.repository.VisiteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -36,6 +37,9 @@ public class VisiteCRUD {
     
         @Autowired
         private VisiteRepository visiteRepository;
+
+        @Autowired
+        private DefiRepository defiRepository;
     
         @GetMapping("/")
         public List<Visite> allUsers(HttpServletResponse response){
@@ -59,33 +63,35 @@ public class VisiteCRUD {
             try (Connection connection = dataSource.getConnection()) {
                 
                 String newVisiteId = "";
-                String defiIdWithoutD = v.getIdDefi().substring(v.getIdDefi().indexOf("D") + 1);
+                String defiIdWithoutD = v.getDefi().getIdDefi().substring(v.getDefi().getIdDefi().indexOf("D") + 1);
                 //Find all visites
-                List<Visite> visites = visiteRepository.findVisiteByIdVisiteContaining(defiIdWithoutD);
+                // List<Visite> visites = visiteRepository.findVisiteByIdVisiteContaining(defiIdWithoutD);
+                // List<Visite> visites = visiteRepository.findVisiteByIdVisiteContaining(defiIdWithoutD);
+                Defi d = defiRepository.findById(v.getDefi().getIdDefi()).get();
+                List<Visite> visitesDefiD = visiteRepository.findByDefi(d);
                 
-                if(visites.size()==0){
+                if(visitesDefiD.size()==0){
                     //VisiteId construction
                     newVisiteId = "V" + defiIdWithoutD + "-" + "1";
                 }
                 else{
-                    for (Visite visite : visites) {
-                        log.info(visite.getIdVisite());    
-                    }
+                    int newVisiteSerie = visitesDefiD.size() +1;
+                    newVisiteId = "V" + defiIdWithoutD + "-" + newVisiteId.toString();
                     //Take defiId for visite id construction
-                    int defiIdInt = Integer.parseInt(defiIdWithoutD);
+                    // int defiIdInt = Integer.parseInt(defiIdWithoutD);
                     //Take last visite id
-                    String lastVisiteId = visites.get(visites.size()-1).getIdVisite();
+                    // String lastVisiteId = visites.get(visites.size()-1).getIdVisite();
                     //Incremented visite id after "="
-                    int visiteIdInt = Integer.parseInt(lastVisiteId.substring(lastVisiteId.indexOf("-") + 1)) +1;
+                    // int visiteIdInt = Integer.parseInt(lastVisiteId.substring(lastVisiteId.indexOf("-") + 1)) +1;
                     //VisiteId construction
-                    newVisiteId = "V" + defiIdInt + "-" + visiteIdInt;
+                    // newVisiteId = "V" + defiIdInt + "-" + visiteIdInt;
                 }
 
 
                 Visite newVisite = Visite.builder()
                         .idVisite(newVisiteId)
                         .visiteur(v.getVisiteur())
-                        .idDefi(v.getIdDefi())
+                        .defi(v.getDefi())
                         .dateDeVisite(v.getDateDeVisite())
                         .mode(v.getMode())
                         .points(v.getPoints())
@@ -135,7 +141,7 @@ public class VisiteCRUD {
     
                 Visite changedVisite = Visite.builder()
                 .idVisite(id)
-                .idDefi(v.getIdDefi())
+                .defi(v.getDefi())
                 .visiteur(v.getVisiteur())
                 .dateDeVisite(v.getDateDeVisite())
                 .mode(v.getMode())
