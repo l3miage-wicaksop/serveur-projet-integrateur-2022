@@ -1,0 +1,171 @@
+[
+{
+    "nomArret": "Le Prisme",
+    "latitude":45.166262,
+    "longitude":5.69052,
+    "ville": "Seyssins" 
+
+
+
+},
+{
+    "nomArret": "Mas des îles",
+    "latitude":45.167631,
+    "longitude":5.694265,
+    "ville": "Seyssins" 
+
+
+},
+{
+    "nomArret": "Grand Pré",
+    "latitude":45.172151,
+    "longitude":5.694188,
+    "ville": "Seyssins Pariset" 
+
+
+
+},
+{
+    "nomArret": "Fauconnière",
+    "latitude":45.176495,
+    "longitude":5.694247,
+    "ville": "Seyssins Pariset" 
+
+
+
+},
+{
+    "nomArret": "Seyssins-Pariset Hôtel de Ville",
+    "latitude":45.18023,
+    "longitude":5.6964,
+    "ville": "Seyssins Pariset" 
+
+
+
+},
+{
+
+    "nomArret": "Vallier-Catane",
+    "latitude":45.180081,
+    "longitude":5.70624,
+    "ville": "Grenoble" 
+
+
+},
+{
+
+    "nomArret": "Vallier-Libération",
+    "latitude":45.180318,
+    "longitude":5.715665,
+    "ville": "Grenoble"
+
+
+},
+{
+
+    "nomArret": "Foch-Ferié",
+    "latitude":45.180822,
+    "longitude":5.722578,
+    "ville": "Grenoble"
+
+},
+{
+
+    "nomArret": "Gustave Rivet",
+    "latitude":45.182353,
+    "longitude":5.728145,
+    "ville": "Grenoble"
+
+
+
+},
+{
+    "nomArret": "Chavant",
+    "latitude": 45.184553,
+    "longitude": 5.731706,
+    "ville": "Grenoble"
+
+
+},
+
+{
+
+    "nomArret": "Chavant",
+    "latitude": 45.184553,
+    "longitude": 5.731706,
+    "ville": "Grenoble"
+
+
+},
+{
+
+    "nomArret": "Grenoble Hôtel de Ville",
+    "latitude": 45.187454,
+    "longitude": 5.737752,
+    "ville": "Grenoble"
+
+
+},
+{
+    "nomArret": "Flandrin Valmy",
+    "latitude": 45.187057,
+    "longitude": 5.744539,
+    "ville": "Grenoble"
+
+
+},
+{
+
+    "nomArret": "Péri-Brossolette",
+    "latitude": 45.187719,
+    "longitude":5.751386,
+    "ville": "Grenoble"
+
+
+},
+{
+
+    "nomArret": "Neyrpic-Belledone",
+    "latitude": 45.186787,
+    "longitude":5.756711,
+    "ville": "Grenoble"
+
+
+},
+{
+    "nomArret": "Hector-Berlioz Universités",
+    "latitude": 45.191096,
+    "longitude":5.758753,
+    "ville": "Grenoble"
+
+
+
+},
+{
+    "nomArret": "Gabriel Fauré",
+    "latitude":45.192301,
+    "longitude": 5.764629,
+    "ville": "Saint-Martin-d'Hères"
+
+
+},
+{
+
+    "nomArret": "Bibliothèques Universités",
+    "latitude": 45.192334,
+    "longitude": 5.770933,
+    "ville": "Saint-Martin-d'Hères"
+
+
+
+},
+{
+
+    "nomArret": "Condillac Universités",
+    "latitude": 45.189077,
+    "longitude": 5.774383,
+    "ville": "Saint-Martin-d'Hères"
+
+}
+
+]
