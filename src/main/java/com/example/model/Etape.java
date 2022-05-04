@@ -11,7 +11,7 @@ import javax.persistence.ManyToOne;
 @Embeddable
 public class Etape {
     
-    @Id
+    
     private  int identifiant;
     
     private int numeroEtape; 
