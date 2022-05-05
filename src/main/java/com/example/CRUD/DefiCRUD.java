@@ -12,9 +12,12 @@ import javax.sql.DataSource;
 import com.example.model.Arret;
 import com.example.model.Chami;
 import com.example.model.Defi;
+import com.example.model.Etape;
 import com.example.repository.ArretRepository;
 import com.example.repository.ChamiRepository;
 import com.example.repository.DefiRepository;
+import com.example.repository.EtapeRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -41,6 +44,9 @@ public class DefiCRUD {
 
     @Autowired
     private ArretRepository arretRepository;
+
+    @Autowired
+    private EtapeRepository etapeRepository;
 
     @GetMapping("/")
     public List<Defi> allUsers(HttpServletResponse response){
@@ -93,6 +99,7 @@ public class DefiCRUD {
                     .dateCreation(d.getDateCreation())
                     .arret(d.getArret())
                     .tmpArret(d.getTmpArret())
+                    .etapes(d.getEtapes())
                     .build();
 
             defiRepository.save(changedDefi);
@@ -111,7 +118,7 @@ public class DefiCRUD {
     }
 
     @PostMapping("/")
-    Defi create( @RequestBody Defi c, HttpServletResponse response) {
+    Defi create( @RequestBody Defi d, HttpServletResponse response) {
         try (Connection connection = dataSource.getConnection()) {  
             //JSON to send to check
             // {
@@ -127,11 +134,19 @@ public class DefiCRUD {
             // }
             
             //Find Chami for Defi creation
-            Chami chamiAuteur = chamiRepository.findById(c.getAuteur().getLogin()).get();
+            Chami chamiAuteur = chamiRepository.findById(d.getAuteur().getLogin()).get();
 
             //Find Arret for Defi creation
-            Arret arretDefi = arretRepository.findById(c.getArret().getNomArret()).get();
+            Arret arretDefi = arretRepository.findById(d.getArret().getNomArret()).get();
             
+            //Find etapes for Defi creation
+            // Etape etapeDefi = etapeRepository.findById(d.getEtapes());
+            // List<Etape> etapesDefi = etapeRepository.findAllById(d.getEtapes());
+            List<Etape> etapesDefi = d.getEtapes();
+            // for(Etape etape: etapesDefi){
+            //     etapeRepository.findById();
+            // }
+
             //Generate a next Id for Defi
             List<Defi> defis = defiRepository.findAll();
             String lastDefiId = defis.get(defis.size()-1).getIdDefi();
@@ -142,11 +157,12 @@ public class DefiCRUD {
 
             Defi newDefi = Defi.builder()
                     .idDefi(newDefiId)
-                    .titre(c.getTitre())
+                    .titre(d.getTitre())
                     .auteur(chamiAuteur)
-                    .dateCreation(c.getDateCreation())
-                    .description(c.getDescription())
+                    .dateCreation(d.getDateCreation())
+                    .description(d.getDescription())
                     .arret(arretDefi)
+                    .etapes(d.getEtapes())
                     .build();
 
             defiRepository.save(newDefi);
