@@ -130,7 +130,7 @@ public class DefiCRUD {
             Chami chamiAuteur = chamiRepository.findById(c.getAuteur().getLogin()).get();
 
             //Find Arret for Defi creation
-            Arret arretDefi = arretRepository.findById(c.getArret().getCodeArret()).get();
+            Arret arretDefi = arretRepository.findById(c.getArret().getNomArret()).get();
             
             //Generate a next Id for Defi
             List<Defi> defis = defiRepository.findAll();
