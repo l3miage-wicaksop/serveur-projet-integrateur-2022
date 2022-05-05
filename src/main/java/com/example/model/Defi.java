@@ -63,6 +63,7 @@ public class Defi {
     private List<Visite> visites;
 
     @Embedded
+    @OneToMany(mappedBy = "defi")
     private List<Etape> etapes;
 
     private String tmpArret;
