@@ -24,8 +24,10 @@ import java.util.List;
 // @ToString
 @Table(name="defis")
 @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
+
 public class Defi {
 
+  
     @Id
     @Column(name="iddefi")
     // @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -59,6 +61,9 @@ public class Defi {
     @JsonIgnoreProperties("defi")
     // @JsonIgnoreProperties(ignoreUnknown = true)
     private List<Visite> visites;
+
+    @Embedded
+    private List<Etape> etapes;
 
     private String tmpArret;
     
