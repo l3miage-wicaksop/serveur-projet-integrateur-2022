@@ -25,9 +25,6 @@ import org.hibernate.annotations.LazyCollectionOption;
 @Table(name="arrets")
 public class Arret {
     @Id
-    @Column(name="codeArret")
-    private String codeArret;
-
     @Column(length=40, name="nomArret")
     private String nomArret;
 

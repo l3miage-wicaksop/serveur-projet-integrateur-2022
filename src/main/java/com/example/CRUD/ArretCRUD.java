@@ -54,7 +54,6 @@ public class ArretCRUD {
             String generatedOpenstreetMap = "https://www.openstreetmap.org/#map=19/" + a.getLatitude().toString() + "/" + a.getLongitude().toString();
 
             Arret newArret = Arret.builder()
-                    .codeArret(a.getCodeArret())
                     .latitude(a.getLatitude())
                     .longitude(a.getLongitude())
                     .ville(a.getVille())
@@ -83,7 +82,7 @@ public class ArretCRUD {
     Arret read(@PathVariable(value="arretId") String id, HttpServletResponse response){
         try (Connection connection = dataSource.getConnection()) {
             
-            Arret arret = arretRepository.getByCodeArret(id);
+            Arret arret = arretRepository.getById(id);
             return arret;
             
         } catch(Exception e){
