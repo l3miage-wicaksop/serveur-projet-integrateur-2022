@@ -37,6 +37,9 @@ public class Defi {
     @Column(name="titre")
     private String titre;
 
+    @Column(name="typeDefi")
+    private TypeDefi typeDefi;
+
     // equivalent à varchar(2000)
     @Column(name="description", length=2000)
     private String description;

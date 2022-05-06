@@ -54,32 +54,31 @@ public class Visite{
     // @JsonIgnoreProperties(ignoreUnknown = true)
     private Chami visiteur;
      
-    @Column(name = "date_de_visite")
-    private Timestamp dateDeVisite;
+    @Column(name = "dateDebut")
+    private Timestamp dateDebut;
+
+    @Column(name = "dateFin")
+    private Timestamp dateFin;
     
-    @Column(name = "mode")
-    private boolean mode;
+    @Column(name = "modeVisite")
+    private boolean modeVisite;
 
-    @Column(name = "points")
-    private int points;
+    // on calcul ici QuestionBienRepondu - IndiceUtilisé
+    @Column(name = "pointTotal")
+    private int pointTotal;
 
-    @Column(name = "score")
-    private int score;
-
+    // fini ou pas fini;
     @Column(name = "status")
     private boolean status;
     
     @Column(name = "temps")
     private int temps;
 
-    @Column(name = "indices")
-    private int indices;
-
     @Column(name = "commentaire")
     private String commentaire;
     
-    public boolean getMode(){
-        return this.mode;
+    public boolean getModeVisite(){
+        return this.modeVisite;
     }
     public boolean getStatus(){
         return this.status;

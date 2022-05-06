@@ -11,7 +11,7 @@ import lombok.*;
 @Setter
 @Entity
 public class Indice extends Etape {
-    private int points;
+    private int point;
     private String indice;
 
     

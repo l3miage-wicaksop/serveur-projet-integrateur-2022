@@ -15,14 +15,28 @@ import javax.persistence.*;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Embeddable
+@Table(name="etapes")
 public abstract class Etape {
     
     @Id
     @GeneratedValue
-    private  int identifiant;
+    @Column(name="idEtape")
+    private  int idEtape;
     
+    @Column(name="numeroEtape")
     private int numeroEtape; 
     
     @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="iddefi")
     private Defi defi;
+
+    public int getNumeroEtape() {
+        return numeroEtape;
+    }
+
+    public void setNumeroEtape(int numeroEtape) {
+        this.numeroEtape = numeroEtape;
+    }
+
+    
 }
