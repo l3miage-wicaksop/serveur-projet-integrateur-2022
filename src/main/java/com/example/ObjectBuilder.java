@@ -138,21 +138,21 @@ public class ObjectBuilder {
 
         Defi d = defiRepository.findById("D127").get();
         
-        Visite v1 = Visite.builder()
-            .defi(d)
-            .idVisite("V127-1")
-            .visiteur(chamiRepository.getBylogin("nomoldus"))
-            .dateDeVisite(timestamp)
-            .mode(true)
-            .points(0)
-            .score(3)
-            .status(true)
-            .temps(8)
-            .commentaire(commentaire)
-            .build();
+        // Visite v1 = Visite.builder()
+        //     .defi(d)
+        //     .idVisite("V127-1")
+        //     .visiteur(chamiRepository.getBylogin("nomoldus"))
+        //     // .dateDeVisite(timestamp)
+        //     .modeVisite(true)
+        //     .points(0)
+        //     .score(3)
+        //     .status(true)
+        //     .temps(8)
+        //     .commentaire(commentaire)
+        //     .build();
 
             
-            visiteRepository.save(v1);
+        //     visiteRepository.save(v1);
 
     
     
