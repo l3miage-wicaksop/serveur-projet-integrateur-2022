@@ -1,5 +1,8 @@
 package com.example.model;
 
+import javax.persistence.Entity;
+
+@Entity
 public class Indication extends Etape  {
-    public String indication;
+    private String indication;
 }
