@@ -38,6 +38,7 @@ public class Defi {
     private String titre;
 
     @Column(name="typeDefi")
+    @Enumerated(EnumType.STRING)
     private TypeDefi typeDefi;
 
     // equivalent à varchar(2000)

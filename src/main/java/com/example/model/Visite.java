@@ -60,6 +60,7 @@ public class Visite{
     @Column(name = "dateFin")
     private Timestamp dateFin;
     
+    // true = distanciel
     @Column(name = "modeVisite")
     private boolean modeVisite;
 
