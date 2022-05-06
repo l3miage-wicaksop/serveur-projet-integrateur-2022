@@ -4,7 +4,9 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -92,10 +94,10 @@ public class VisiteCRUD {
                         .idVisite(newVisiteId)
                         .visiteur(v.getVisiteur())
                         .defi(v.getDefi())
-                        .dateDeVisite(v.getDateDeVisite())
-                        .mode(v.getMode())
-                        .points(v.getPoints())
-                        .score(v.getScore())
+                        .dateDebut(v.getDateDebut())
+                        .dateFin(v.getDateFin())
+                        .modeVisite(v.getModeVisite())
+                        .pointTotal(v.getPointTotal())
                         .status(v.getStatus())
                         .temps(v.getTemps())
                         .commentaire(v.getCommentaire())
@@ -141,12 +143,12 @@ public class VisiteCRUD {
     
                 Visite changedVisite = Visite.builder()
                 .idVisite(id)
-                .defi(v.getDefi())
                 .visiteur(v.getVisiteur())
-                .dateDeVisite(v.getDateDeVisite())
-                .mode(v.getMode())
-                .points(v.getPoints())
-                .score(v.getScore())
+                .defi(v.getDefi())
+                .dateDebut(v.getDateDebut())
+                .dateFin(v.getDateFin())
+                .modeVisite(v.getModeVisite())
+                .pointTotal(v.getPointTotal())
                 .status(v.getStatus())
                 .temps(v.getTemps())
                 .commentaire(v.getCommentaire())
