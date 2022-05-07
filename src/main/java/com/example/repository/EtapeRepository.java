@@ -14,5 +14,5 @@ import java.util.List;
 @Repository
 @CrossOrigin(origins = "*")
 public interface EtapeRepository extends JpaRepository<Etape, Long> {
-    
+    Etape getByIdEtape(Long idEtape);
 }

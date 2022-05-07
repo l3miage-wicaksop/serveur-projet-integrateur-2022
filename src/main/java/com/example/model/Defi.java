@@ -38,8 +38,7 @@ public class Defi {
     private String titre;
 
     @Column(name="typeDefi")
-    @Enumerated(EnumType.STRING)
-    private TypeDefi typeDefi;
+    private String typeDefi;
 
     // equivalent à varchar(2000)
     @Column(name="description", length=2000)
@@ -66,10 +65,8 @@ public class Defi {
     // @JsonIgnoreProperties(ignoreUnknown = true)
     private List<Visite> visites;
 
-    @Embedded
+    
     @OneToMany(mappedBy = "defi")
     private List<Etape> etapes;
-
-    private String tmpArret;
     
 }

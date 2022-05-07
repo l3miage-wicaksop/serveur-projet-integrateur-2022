@@ -1,6 +1,7 @@
 package com.example.CRUD;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -63,9 +64,10 @@ public class EtapeCRUD {
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST, "message goes here");
           
             }
-            // Defi defi = defiRepository.findById(eta.getDefi().getIdDefi()).get();
+            Defi defi = defiRepository.getByIdDefi(eta.getDefi().getIdDefi());
             
             Etape etape = Etape.builder()
+            .defi(defi)
             .numeroEtape(eta.getNumeroEtape())
             .indication(eta.getIndication())
             .indice(eta.getIndice())
@@ -75,12 +77,14 @@ public class EtapeCRUD {
             .solution(eta.getSolution())
             .build();
 
-            etapeRepository.save(etape);
+            
 
+            // Etape etapeFromServer = etapeRepository.findById(etape.getIdEtape()).get();
             int idxChoix = 0;
+            List<ChoixPossible> newChoixList = new ArrayList<ChoixPossible>();
             for(ChoixPossible choix: eta.getChoixPossibles()){
                 ChoixPossible c = ChoixPossible.builder()
-                .etape(etape)
+                .etape(eta)
                 .choix(choix.getChoix())
                 .etape(choix.getEtape())
                 .idChoix(idxChoix)
@@ -88,9 +92,11 @@ public class EtapeCRUD {
 
                 idxChoix++;
 
+                newChoixList.add(c);
                 choixPossibleRepository.save(c);
             }
-
+            etape.setChoixPossibles(newChoixList);
+            etapeRepository.save(etape);
             return etape;
         } catch(Exception e){
                 response.setStatus(500);

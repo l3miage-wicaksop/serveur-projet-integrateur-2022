@@ -95,7 +95,6 @@ public class DefiCRUD {
                     .dateCreation(d.getDateCreation())
                     .arret(d.getArret())
                     .typeDefi(d.getTypeDefi())
-                    .tmpArret(d.getTmpArret())
                     .build();
 
             defiRepository.save(changedDefi);

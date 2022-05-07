@@ -9,6 +9,9 @@ import javax.persistence.Inheritance;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 import lombok.Builder;
 import lombok.*;
 
@@ -23,9 +26,8 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Getter
 @Setter
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@Embeddable
 @Table(name="etapes")
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idEtape")
 public class Etape {
    
     @Id
@@ -51,14 +53,14 @@ public class Etape {
     @Column(name = "pointIndice")
     private int pointIndice;
     
-    @ManyToOne(cascade = CascadeType.REFRESH)
-    @JoinColumn(name="iddefi")
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="defi")
     private Defi defi;
     
     private String solution;
 
-    @OneToMany
-    @JoinColumn(name="choix")
+    @OneToMany(mappedBy = "etape")
+    @ElementCollection
     private List<ChoixPossible> choixPossibles;
     
     public int getNumeroEtape() {
