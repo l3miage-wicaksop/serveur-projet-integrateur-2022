@@ -3,6 +3,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -92,6 +94,7 @@ public class DefiCRUD {
                     .titre(d.getTitre())
                     .dateCreation(d.getDateCreation())
                     .arret(d.getArret())
+                    .typeDefi(d.getTypeDefi())
                     .tmpArret(d.getTmpArret())
                     .build();
 
@@ -130,23 +133,31 @@ public class DefiCRUD {
             Chami chamiAuteur = chamiRepository.findById(c.getAuteur().getLogin()).get();
 
             //Find Arret for Defi creation
-            Arret arretDefi = arretRepository.findById(c.getArret().getNomArret()).get();
+            Arret arretDefi = arretRepository.findByNomArret(c.getArret().getNomArret());
+            
             
             //Generate a next Id for Defi
+            String newDefiId ="";
             List<Defi> defis = defiRepository.findAll();
-            String lastDefiId = defis.get(defis.size()-1).getIdDefi();
-            int defiIdInt = Integer.parseInt(lastDefiId.substring(lastDefiId.indexOf("D") + 1)) +1;
-            String newDefiId = "D" + defiIdInt;
+            if(defis.isEmpty()){
+                newDefiId = "D1";
+            }else{
 
-            
+                String lastDefiId = defis.get(defis.size()-1).getIdDefi();
+                int defiIdInt = Integer.parseInt(lastDefiId.substring(lastDefiId.indexOf("D") + 1)) +1;
+                newDefiId = "D" + defiIdInt;
+            }
+
+            Timestamp currentTime = new Timestamp(System.currentTimeMillis());
 
             Defi newDefi = Defi.builder()
+                    .arret(arretDefi)
                     .idDefi(newDefiId)
                     .titre(c.getTitre())
                     .auteur(chamiAuteur)
-                    .dateCreation(c.getDateCreation())
+                    .dateCreation(currentTime)
+                    .typeDefi(c.getTypeDefi())
                     .description(c.getDescription())
-                    .arret(arretDefi)
                     .build();
 
             defiRepository.save(newDefi);

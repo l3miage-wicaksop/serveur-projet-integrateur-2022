@@ -78,7 +78,7 @@ public class VisiteCRUD {
                 }
                 else{
                     int newVisiteSerie = visitesDefiD.size() +1;
-                    newVisiteId = "V" + defiIdWithoutD + "-" + newVisiteId.toString();
+                    newVisiteId = "V" + defiIdWithoutD + "-" + Integer.toString(visitesDefiD.size()+1);
                     //Take defiId for visite id construction
                     // int defiIdInt = Integer.parseInt(defiIdWithoutD);
                     //Take last visite id

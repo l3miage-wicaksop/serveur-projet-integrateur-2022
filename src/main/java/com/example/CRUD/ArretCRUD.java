@@ -54,10 +54,10 @@ public class ArretCRUD {
             String generatedOpenstreetMap = "https://www.openstreetmap.org/#map=19/" + a.getLatitude().toString() + "/" + a.getLongitude().toString();
 
             Arret newArret = Arret.builder()
+                    .nomArret(a.getNomArret())
                     .latitude(a.getLatitude())
                     .longitude(a.getLongitude())
                     .ville(a.getVille())
-                    .nomArret(a.getNomArret())
                     .googlemap(generatedGoogleMap)
                     .openstreetmap(generatedOpenstreetMap)
                     .build();
@@ -76,6 +76,29 @@ public class ArretCRUD {
             System.err.println(e.getMessage());
             return null;
         }
+    }
+
+    @PostMapping("/list/")
+    List<Arret> createList(@RequestBody List<Arret> arrets, HttpServletResponse response) {
+        try (Connection connection = dataSource.getConnection()) {
+            for(Arret arret: arrets){
+                this.create(arret, response);
+            }
+
+            return arrets;
+            
+        } catch(Exception e){
+            response.setStatus(404);
+            try{
+                response.getOutputStream().print(e.getMessage());
+            } catch(Exception e2){
+                System.err.println(e2.getMessage());
+            }
+            System.err.println(e.getMessage());
+            return null;
+        }
+
+
     }
 
     @GetMapping("/{arretId}")

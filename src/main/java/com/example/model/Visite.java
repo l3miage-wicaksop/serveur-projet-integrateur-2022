@@ -34,7 +34,7 @@ Commentaire :
   @Getter
   @Setter
   @Table(name="visites")
-  @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
+  @JsonIdentityInfo(generator=ObjectIdGenerators.PropertyGenerator.class, property = "idVisite")
 public class Visite{
     
     @Id

@@ -21,7 +21,8 @@ import org.hibernate.annotations.LazyCollectionOption;
 @Builder
 @Getter
 @Setter
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
+// @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "nomArret")
 @Table(name="arrets")
 public class Arret {
     @Id
@@ -42,7 +43,7 @@ public class Arret {
 
     @OneToMany(mappedBy = "arret")
     @LazyCollection(LazyCollectionOption.FALSE)
-    // @JsonManagedReference("arretDefi")
+    
     
     private List<Defi> defis;
 

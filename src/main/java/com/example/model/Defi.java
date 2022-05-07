@@ -23,7 +23,7 @@ import java.util.List;
 @Setter
 // @ToString
 @Table(name="defis")
-@JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idDefi")
 
 public class Defi {
 
@@ -48,13 +48,13 @@ public class Defi {
     @Column(name="datecreation")
     private Timestamp dateCreation;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name="auteur")
     // @JsonBackReference("auteurDefi")
     // @JsonIgnoreProperties("defis")
     private Chami auteur;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name="arret")
     // @JsonBackReference(value="arretDefi")
     // @JsonIgnoreProperties("defi")

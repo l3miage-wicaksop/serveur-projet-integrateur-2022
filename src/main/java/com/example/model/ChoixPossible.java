@@ -7,15 +7,21 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import lombok.*;
+
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Getter
+@Setter
 @Table(name="ChoixPossible")
 public class ChoixPossible {
 
     @ManyToOne
-    private Question question;
-    
+    private Etape etape;
+
     @Id
-    @GeneratedValue
     @Column(name="idChoix")
     private int idChoix;
 

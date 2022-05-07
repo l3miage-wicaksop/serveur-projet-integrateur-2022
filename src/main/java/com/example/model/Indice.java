@@ -1,6 +1,8 @@
 package com.example.model;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
 import lombok.*;
 
@@ -10,8 +12,12 @@ import lombok.*;
 @Getter
 @Setter
 @Entity
-public class Indice extends Etape {
+public class Indice  {
+    @Id
+    @GeneratedValue
+    private int idIndice;
     private int point;
+    
     private String indice;
 
     
