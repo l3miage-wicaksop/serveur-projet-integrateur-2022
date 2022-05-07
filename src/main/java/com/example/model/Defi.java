@@ -47,6 +47,9 @@ public class Defi {
     @Column(name="datecreation")
     private Timestamp dateCreation;
 
+    @Column(name="points")
+    private int points;
+
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name="auteur")
     // @JsonBackReference("auteurDefi")

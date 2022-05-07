@@ -38,7 +38,7 @@ Commentaire :
 public class Visite{
     
     @Id
-    @Column(name="id_visite")
+    @Column(name="idVisite")
     private String idVisite;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -48,7 +48,7 @@ public class Visite{
     private Defi defi;
     
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="visiteur")
+    @JoinColumn(name="chami")
     // @JsonBackReference("visiteur")
     // @JsonIgnoreProperties("visites")
     // @JsonIgnoreProperties(ignoreUnknown = true)
@@ -61,12 +61,12 @@ public class Visite{
     private Timestamp dateFin;
     
     // true = distanciel
-    @Column(name = "modeVisite")
-    private boolean modeVisite;
+    @Column(name = "mode")
+    private boolean mode;
 
     // on calcul ici QuestionBienRepondu - IndiceUtilisé
-    @Column(name = "pointTotal")
-    private int pointTotal;
+    @Column(name = "score")
+    private int score;
 
     // fini ou pas fini;
     @Column(name = "status")
@@ -78,8 +78,8 @@ public class Visite{
     @Column(name = "commentaire")
     private String commentaire;
     
-    public boolean getModeVisite(){
-        return this.modeVisite;
+    public boolean getMode(){
+        return this.mode;
     }
     public boolean getStatus(){
         return this.status;
