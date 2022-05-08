@@ -77,24 +77,26 @@ public class EtapeCRUD {
             .solution(eta.getSolution())
             .build();
 
-            
+            etapeRepository.saveAndFlush(etape);
 
-            // Etape etapeFromServer = etapeRepository.findById(etape.getIdEtape()).get();
+            Etape etapeFromServer = etapeRepository.findById(etape.getIdEtape()).get();
             int idxChoix = 0;
             List<ChoixPossible> newChoixList = new ArrayList<ChoixPossible>();
             for(ChoixPossible choix: eta.getChoixPossibles()){
                 ChoixPossible c = ChoixPossible.builder()
-                .etape(eta)
+                .etape(etapeFromServer)
                 .choix(choix.getChoix())
                 .etape(choix.getEtape())
                 .idChoix(idxChoix)
                 .build();
 
+                c.setEtape(etapeFromServer);
                 idxChoix++;
 
                 newChoixList.add(c);
-                choixPossibleRepository.save(c);
+                
             }
+            choixPossibleRepository.saveAll(newChoixList);
             etape.setChoixPossibles(newChoixList);
             etapeRepository.save(etape);
             return etape;
