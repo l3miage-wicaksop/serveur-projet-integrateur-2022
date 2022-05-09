@@ -1,3 +1,5 @@
+package main.java.com.example.model;
+
 
 
 import java.util.List;
@@ -20,22 +22,15 @@ import lombok.*;
 @Getter
 @Setter
 @Entity
-public class Question extends Etape {
-    
-    private String sujet ;
+public class Indication extends Etape {
+    @Id
+    @GeneratedValue
+    private int idIndication;
+    private String indication ;
 
-    @ElementCollection
-    @CollectionTable(
-        name = "choixPossibles",
-        joinColumns=@JoinColumn(name = "idQuestion", referencedColumnName = "idQuestion")
-    )
-    @OneToMany
-    @JoinColumn(name="choix")
-    private List<ChoixPossible> choixPossibles;
-
-    private String solution;
+    private String srcVideo;
     
-    private int point;
+    private int srcImage;
     
 
 }
