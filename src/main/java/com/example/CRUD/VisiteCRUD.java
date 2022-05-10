@@ -65,11 +65,11 @@ public class VisiteCRUD {
             try (Connection connection = dataSource.getConnection()) {
                 
                 String newVisiteId = "";
-                String defiIdWithoutD = v.getDefi().getIdDefi().substring(v.getDefi().getIdDefi().indexOf("D") + 1);
+                String defiIdWithoutD = ((Defi) v.getDefi()).getIdDefi().substring(((Defi) v.getDefi()).getIdDefi().indexOf("D") + 1);
                 //Find all visites
                 // List<Visite> visites = visiteRepository.findVisiteByIdVisiteContaining(defiIdWithoutD);
                 // List<Visite> visites = visiteRepository.findVisiteByIdVisiteContaining(defiIdWithoutD);
-                Defi d = defiRepository.findById(v.getDefi().getIdDefi()).get();
+                Defi d = defiRepository.findById(((Defi) v.getDefi()).getIdDefi()).get();
                 List<Visite> visitesDefiD = visiteRepository.findByDefi(d);
                 
                 if(visitesDefiD.size()==0){
@@ -90,18 +90,18 @@ public class VisiteCRUD {
                 }
 
 
-                Visite newVisite = Visite.builder()
-                        .idVisite(newVisiteId)
-                        .visiteur(v.getVisiteur())
-                        .defi(v.getDefi())
-                        .dateDebut(v.getDateDebut())
-                        .dateFin(v.getDateFin())
-                        .mode(v.getMode())
-                        .score(v.getScore())
-                        .status(v.getStatus())
-                        .temps(v.getTemps())
-                        .commentaire(v.getCommentaire())
-                        .build();
+                Visite newVisite = new Visite();
+                newVisite.setIdVisite(newVisiteId);
+                newVisite.setVisiteur(v.getVisiteur());
+                newVisite.setDefi(v.getDefi());
+                newVisite.setDateDebut(v.getDateDebut());
+                newVisite.setDateFin(v.getDateFin());
+                newVisite.setMode(v.getMode());
+                newVisite.setScore(v.getScore());
+                newVisite.setStatus(v.getStatus());
+                newVisite.setTemps(v.getTemps());
+                newVisite.setCommentaire(v.getCommentaire());
+                
     
                 visiteRepository.save(newVisite);
     
@@ -141,18 +141,18 @@ public class VisiteCRUD {
         Visite update(@PathVariable(value="userId") String id, @RequestBody Visite v, HttpServletResponse response){
             try (Connection connection = dataSource.getConnection()) { 
     
-                Visite changedVisite = Visite.builder()
-                .idVisite(id)
-                .visiteur(v.getVisiteur())
-                .defi(v.getDefi())
-                .dateDebut(v.getDateDebut())
-                .dateFin(v.getDateFin())
-                .mode(v.getMode())
-                .score(v.getScore())
-                .status(v.getStatus())
-                .temps(v.getTemps())
-                .commentaire(v.getCommentaire())
-                .build();
+                Visite changedVisite = new Visite();
+                changedVisite.setIdVisite(id);
+                changedVisite.setVisiteur(v.getVisiteur());
+                changedVisite.setDefi(v.getDefi());
+                changedVisite.setDateDebut(v.getDateDebut());
+                changedVisite.setDateFin(v.getDateFin());
+                changedVisite.setMode(v.getMode());
+                changedVisite.setScore(v.getScore());
+                changedVisite.setStatus(v.getStatus());
+                changedVisite.setTemps(v.getTemps());
+                changedVisite.setCommentaire(v.getCommentaire());
+                
                         
     
                 visiteRepository.save(changedVisite);

@@ -55,18 +55,18 @@ public class ChamiCRUD {
     Chami create(@RequestBody Chami c, HttpServletResponse response) {
         try (Connection connection = dataSource.getConnection()) {
 
-            Chami newChami = Chami.builder()
-                    .age(c.getAge())
-                    .description(c.getDescription())
-                    .login(c.getLogin())
-                    .ville(c.getVille())
-                    .prenom(c.getPrenom())
-                    .nom(c.getNom())
-                    .build();
+
+            Chami newChami = new Chami();
+            newChami.setLogin(c.getLogin());
+            newChami.setDescription(c.getDescription());
+            newChami.setAge(c.getAge());
+            newChami.setPrenom(c.getPrenom());
+            newChami.setNom(c.getNom());
+            newChami.setVille(c.getVille());
 
             chamiRepository.save(newChami);
-
             return newChami;
+
             
         } catch(Exception e){
             response.setStatus(404);
@@ -103,14 +103,13 @@ public class ChamiCRUD {
     Chami update(@PathVariable(value="userId") String id, @RequestBody Chami c, HttpServletResponse response){
         try (Connection connection = dataSource.getConnection()) { 
 
-            Chami changedChami = Chami.builder()
-                    .login(id)
-                    .description(c.getDescription())
-                    .age(c.getAge())
-                    .prenom(c.getPrenom())
-                    .nom(c.getNom())
-                    .ville(c.getVille())
-                    .build();
+            Chami changedChami = new Chami();
+            changedChami.setLogin(id);
+            changedChami.setDescription(c.getDescription());
+            changedChami.setAge(c.getAge());
+            changedChami.setPrenom(c.getPrenom());
+            changedChami.setNom(c.getNom());
+            changedChami.setVille(c.getVille());
 
             chamiRepository.save(changedChami);
             return changedChami;

@@ -64,40 +64,38 @@ public class EtapeCRUD {
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST, "message goes here");
           
             }
-            Defi defi = defiRepository.getByIdDefi(eta.getDefi().getIdDefi());
+            Defi defi = defiRepository.getByIdDefi(((Defi) eta.getDefi()).getIdDefi());
             
-            Etape etape = Etape.builder()
-            .defi(defi)
-            .numeroEtape(eta.getNumeroEtape())
-            .indication(eta.getIndication())
-            .indice(eta.getIndice())
-            .pointIndice(eta.getPointIndice())
-            .question(eta.getQuestion())
-            .pointQuestion(eta.getPointQuestion())
-            .solution(eta.getSolution())
-            .build();
+            Etape etape = new Etape();
+            etape.setIndication(eta.getIndication());
+            etape.setIndice(eta.getIndice());
+            etape.setIndication(eta.getIndication());
+            etape.setQuestion(eta.getQuestion());
+            etape.setDefi(defi);
+                       // .numeroEtape(eta.getNumeroEtape())
+      
 
-            etapeRepository.saveAndFlush(etape);
+            // etapeRepository.saveAndFlush(etape);
 
-            Etape etapeFromServer = etapeRepository.findById(etape.getIdEtape()).get();
-            int idxChoix = 0;
-            List<ChoixPossible> newChoixList = new ArrayList<ChoixPossible>();
-            for(ChoixPossible choix: eta.getChoixPossibles()){
-                ChoixPossible c = ChoixPossible.builder()
-                .etape(etapeFromServer)
-                .choix(choix.getChoix())
-                .etape(choix.getEtape())
-                .idChoix(idxChoix)
-                .build();
+            // Etape etapeFromServer = etapeRepository.findById(etape.getIdEtape()).get();
+            // int idxChoix = 0;
+            // List<ChoixPossible> newChoixList = new ArrayList<ChoixPossible>();
+            // for(ChoixPossible choix: eta.getChoixPossibles()){
+            //     ChoixPossible c = ChoixPossible.builder()
+            //     .etape(etapeFromServer)
+            //     .choix(choix.getChoix())
+            //     .etape(choix.getEtape())
+            //     .idChoix(idxChoix)
+            //     .build();
 
-                c.setEtape(etapeFromServer);
-                idxChoix++;
+            //     c.setEtape(etapeFromServer);
+            //     idxChoix++;
 
-                newChoixList.add(c);
+            //     newChoixList.add(c);
                 
-            }
-            choixPossibleRepository.saveAll(newChoixList);
-            etape.setChoixPossibles(newChoixList);
+            // }
+            // choixPossibleRepository.saveAll(newChoixList);
+            // etape.setChoixPossibles(newChoixList);
             etapeRepository.save(etape);
             return etape;
         } catch(Exception e){

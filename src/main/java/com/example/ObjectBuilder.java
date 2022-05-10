@@ -1,13 +1,23 @@
 package com.example;
 import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.List;
+
 import com.example.model.Chami;
+import com.example.model.ChoixPossible;
 import com.example.model.Defi;
+import com.example.model.Etape;
+import com.example.model.Indication;
+import com.example.model.Indice;
+import com.example.model.Question;
 import com.example.model.Visite;
 import com.example.repository.ChamiRepository;
 import com.example.repository.DefiRepository;
 import com.example.repository.VisiteRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+
+
 
 public class ObjectBuilder {
     @Autowired
@@ -20,19 +30,34 @@ public class ObjectBuilder {
     VisiteRepository visiteRepository;
 
     public void V0ChamisCreator(){
-        Chami c1 = Chami.builder().login("carobis").age(21).build();
-        Chami c2 = Chami.builder().login("escribis").age(43).build();
-        Chami c3 = Chami.builder().login("momo").age(38).build();
-        Chami c4 = Chami.builder().login("nomoldu").age(20).build();
-        Chami c5 = Chami.builder().login("python38").age(18).build();
-        Chami c6 = Chami.builder().login("yes4moldus").age(38).build();
+        Chami c1 = new Chami();
+        //Chami.builder().login("carobis").age(21).build();
+        c1.setLogin("carobis");
+        c1.setAge(21);
+        
+        Chami c2 = new Chami();
+        //Chami.builder().login("carobis").age(21).build();
+        c1.setLogin("chenah");
+        c1.setAge(21);
+      
+
+        Chami c3 = new Chami();
+        //Chami.builder().login("carobis").age(21).build();
+        c1.setLogin("PDIORI");
+        c1.setAge(21);
+      
+
+        Chami c4 = new Chami();
+        //Chami.builder().login("carobis").age(21).build();
+        c1.setLogin("suk");
+        c1.setAge(21);
+      
+
 
         chamiRepository.save(c1);
         chamiRepository.save(c2);
         chamiRepository.save(c3);
         chamiRepository.save(c4);
-        chamiRepository.save(c5);
-        chamiRepository.save(c6);
     }
 
     public void V0DefisCreator(){
@@ -44,83 +69,60 @@ public class ObjectBuilder {
         descriptionD1 += "- Rendez vous à l'arrêt de bus \"Maison du tourisme - Hubert Dubedout\".\n ";
         descriptionD1 += "- Cherche ce qu'il faut pour faire un méchoui.\n ";
         
-        Defi d1 = Defi.builder()
-            .idDefi("D127")
-            .titre("Le Méchoui")
-            .auteur(chamiRepository.getBylogin("carobis"))
-            .description(descriptionD1)
-            .dateCreation(timestamp1)
-            .build();
+        Defi d1 = new Defi();
+        d1.setIdDefi("D127");
+        d1.setTitre("Le Méchoui");
+        d1.setAuteur(chamiRepository.getBylogin("carobis"));
+        d1.setDescription(descriptionD1);
+        d1.setDateCreation(timestamp1);
         
+        Etape e1=new Etape();
+        e1.setDefi(d1);
+        e1.setDescription("D127 E1 description");
+        int i=1;
+        //first way.
+        Long l2=Long.valueOf(i);//second way.
+        e1.setIdEtape(l2);
 
-        String str2 = "01/04/2021 15:03";
-        Timestamp timestamp2 = Timestamp.valueOf(str2);  
-        
-        String descriptionD2 = "";
-        descriptionD2 += "- Rendez vous à l'arrêt de bus \"Grenoble - hôtel de ville\".\n";
-        descriptionD2 += "- Passe par \"l'orangerie\".\n";
-        descriptionD2 += "- Ca te donneras de l'énergie mais surtout ne dépasse pas les bornes !\n";
-        descriptionD2 += "- Fatiguée ? T'as pas fait des bornes. Tu devrais avoir de l'énergie.\n";
-        descriptionD2 += "- Reste sur le parking pour te recharger les piles.\n";
-        descriptionD2 += "- Cherche plutôt celui qui pourrait te donner matière à te protéger pendant l'hiver.\n";
-        descriptionD2 += "- Il est là. Il te regarde de haut. Il t'observe.\n";
-        descriptionD2 += "- Il bêle. \"Je suis ceux que je suis. Et le vert, je le mange !\"";
-        descriptionD2 += "- Combien de boucles sous mon cou ?\n";
+        Question q1=new Question();
+        q1.setSujet(descriptionD1);
+        ChoixPossible ch=new ChoixPossible();
+        List<ChoixPossible> listCh=new ArrayList<ChoixPossible>();
+        ch.setEtape(e1);
+        ch.setChoix(descriptionD1);
+        ch.setIdChoix(1);
+
+        ChoixPossible ch2=new ChoixPossible();
+        ch2.setEtape(e1);
+        ch2.setChoix("wrong");
+        ch2.setIdChoix(2);
+
+        listCh.add(ch);
+        listCh.add(ch2);
+
+        Indication indic=new Indication();
+        indic.setText("Indicatio nhere");
+        indic.setSrcVideo("srcVideo here");
+
+        q1.setChoixPossibles(listCh);
+        q1.setPoint(23);
+        q1.setSolution(descriptionD1);
+
+        Indice indice=new Indice();
+        indice.setIdIndice(1);
+        indice.setIndice("clue here");
+        indice.setPoint(1);
+
+        q1.setIndice(indice);
+        e1.setIndication(indic);
+        e1.setQuestion(q1);
 
 
-        Defi d2 = Defi.builder()
-            .idDefi("D145")
-            .titre("Le vert, je le mange !")
-            .auteur(chamiRepository.getBylogin("escribis"))
-            .description(descriptionD2)
-            .dateCreation(timestamp2)
-            .build();
 
-        String str3 = "13/04/2021 12:03";
-        Timestamp timestamp3 = Timestamp.valueOf(str3);
-        
-        String descriptionD3 ="";
-        descriptionD3 += "- Rendez-vous à l'arrêt Victor Hugo\n";
-        descriptionD3 += "- Il tourne en rond pour le plaisir des petits. Cherche le.\n";
-        descriptionD3 += "- Si il n'y est pas demande à quelqu'un où il est quand il y est :-) \n";
-        descriptionD3 += "- Fait toi un selfie avec les 2 moutons en utilisant ton sens de la créativité.\n";
-        descriptionD3 += "- Si tu n'y arrives pas demande à quelqu'un qu'il/elle te tire un portrait.\n";
-    
-        Defi d3 = Defi.builder()
-            .idDefi("D151")
-            .titre("Ils tournent et rond.")
-            .auteur(chamiRepository.getBylogin("escribis"))
-            .description(descriptionD3)
-            .dateCreation(timestamp3)
-            .build();
-        
-        String str4 = "17/03/2021 12:03";
-        Timestamp timestamp4 = Timestamp.valueOf(str4);
-                
-        String descriptionD4 ="";
-        descriptionD4 += "- Rendez-vous à l'arrêt Victor-Hugo\n";
-        descriptionD4 += "- C'est l'été. Tu as besoin de grand air.\n";
-        descriptionD4 += "- Demande à quelqu'un où est la maison de la montagne.\n";
-        descriptionD4 += "- Longe le tram pour y aller. Tu demanderas où on peut voir des chamois.\n";
-        descriptionD4 += "- Vas pas trop vite ! Les chamoix sont en plein centre ville ! \n";
-        descriptionD4 += "- Grenoble c'est la ville du béton, mais c'est aussi la capitale des Alpes.\n";
-        descriptionD4 += "- Fait attention tu pourrais te faire écraser par des pachidermes ! \n";
-        descriptionD4 += "- (Q1) Combien d'écureuils (compter uniquement les tout plats) ?\n";
-        descriptionD4 += "- (Q2) Combien de chamois ?\n";
-        descriptionD4 += "- (Q3) Combien d'éléphants ?\n";
-    
-        Defi d4 = Defi.builder()
-            .idDefi("D189")
-            .titre("Et l'écureil alors ?")
-            .auteur(chamiRepository.getBylogin("carobis"))
-            .description(descriptionD4)
-            .dateCreation(timestamp4)
-            .build();
+       
     
         defiRepository.save(d1);
-        defiRepository.save(d2);
-        defiRepository.save(d3);
-        defiRepository.save(d4);
+      
     
     
     }

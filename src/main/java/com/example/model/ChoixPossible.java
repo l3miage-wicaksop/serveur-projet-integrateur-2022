@@ -16,8 +16,6 @@ import lombok.*;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 @Table(name="ChoixPossible")
 public class ChoixPossible {
 
@@ -26,9 +24,34 @@ public class ChoixPossible {
     @JoinColumn(name="etape", nullable = false)
     private Etape etape;
 
+    public Etape getEtape() {
+        return this.etape;
+    }
+
+    public void setEtape(Etape etape) {
+        this.etape = etape;
+    }
+
     @Id
     @Column(name="idChoix")
     private int idChoix;
 
+    public int getIdChoix() {
+        return this.idChoix;
+    }
+
+    public void setIdChoix(int idChoix) {
+        this.idChoix = idChoix;
+    }
+
     private String choix;
+
+    public String getChoix() {
+        return this.choix;
+    }
+
+    public void setChoix(String choix) {
+        this.choix = choix;
+    }
+
 }

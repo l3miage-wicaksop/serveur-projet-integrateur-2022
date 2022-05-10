@@ -53,14 +53,13 @@ public class ArretCRUD {
             // link example: https://www.openstreetmap.org/#map=19/45.1856/5.7240524
             String generatedOpenstreetMap = "https://www.openstreetmap.org/#map=19/" + a.getLatitude().toString() + "/" + a.getLongitude().toString();
 
-            Arret newArret = Arret.builder()
-                    .nomArret(a.getNomArret())
-                    .latitude(a.getLatitude())
-                    .longitude(a.getLongitude())
-                    .ville(a.getVille())
-                    .googlemap(generatedGoogleMap)
-                    .openstreetmap(generatedOpenstreetMap)
-                    .build();
+            Arret newArret = new Arret();
+                newArret.setNomArret(a.getNomArret());
+                newArret.setLatitude(a.getLatitude());
+                newArret.setLongitude(a.getLongitude());
+                newArret.setVille(a.getVille());
+                newArret.setGooglemap(a.getGooglemap());
+                newArret.setOpenstreetmap(a.getOpenstreetmap());
 
             arretRepository.save(newArret);
 

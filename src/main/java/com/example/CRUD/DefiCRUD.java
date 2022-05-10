@@ -87,16 +87,15 @@ public class DefiCRUD {
     Defi update(@PathVariable(value="idDefi") String id, @RequestBody Defi d, HttpServletResponse response){
         try (Connection connection = dataSource.getConnection()) { 
             
-            Defi changedDefi = Defi.builder()
-                    .idDefi(id)
-                    .description(d.getDescription())
-                    .auteur(d.getAuteur())
-                    .titre(d.getTitre())
-                    .dateCreation(d.getDateCreation())
-                    .arret(d.getArret())
-                    .typeDefi(d.getTypeDefi())
-                    .build();
-
+            Defi changedDefi = new Defi();
+            changedDefi.setIdDefi(id);
+            changedDefi.setArret(d.getArret());
+            changedDefi.setDescription(d.getDescription());
+            changedDefi.setAuteur(d.getAuteur());
+            changedDefi.setTitre(d.getTitre());
+            changedDefi.setDateCreation(d.getDateCreation());
+            changedDefi.setTypeDefi(d.getTypeDefi());
+            
             defiRepository.save(changedDefi);
             return changedDefi;
             
@@ -149,15 +148,17 @@ public class DefiCRUD {
 
             Timestamp currentTime = new Timestamp(System.currentTimeMillis());
 
-            Defi newDefi = Defi.builder()
-                    .arret(arretDefi)
-                    .idDefi(newDefiId)
-                    .titre(c.getTitre())
-                    .auteur(chamiAuteur)
-                    .dateCreation(currentTime)
-                    .typeDefi(c.getTypeDefi())
-                    .description(c.getDescription())
-                    .build();
+
+            Defi newDefi = new Defi();
+            newDefi.setIdDefi(newDefiId);
+            newDefi.setArret(arretDefi);
+            newDefi.setDescription(c.getDescription());
+            newDefi.setAuteur(chamiAuteur);
+            newDefi.setTitre(c.getTitre());
+            newDefi.setDateCreation(currentTime);
+            newDefi.setTypeDefi(c.getTypeDefi());
+            
+
 
             defiRepository.save(newDefi);
 

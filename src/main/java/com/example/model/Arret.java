@@ -18,9 +18,6 @@ import org.hibernate.annotations.LazyCollectionOption;
 @Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@Getter
-@Setter
 // @JsonIdentityInfo(generator=ObjectIdGenerators.IntSequenceGenerator.class)
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "nomArret")
 @Table(name="arrets")
@@ -31,8 +28,32 @@ public class Arret {
 
     private String ville;
 
+    public String getNomArret() {
+        return this.nomArret;
+    }
+
+    public void setNomArret(String nomArret) {
+        this.nomArret = nomArret;
+    }
+
+    public String getVille() {
+        return this.ville;
+    }
+
+    public void setVille(String ville) {
+        this.ville = ville;
+    }
+
     @Column(name="openstreetmap", length=80)
     private String openstreetmap;
+
+    public String getOpenstreetmap() {
+        return this.openstreetmap;
+    }
+
+    public void setOpenstreetmap(String openstreetmap) {
+        this.openstreetmap = openstreetmap;
+    }
 
     @Column(name="googlemap", length=80)
     private String googlemap;
@@ -41,10 +62,42 @@ public class Arret {
 
     private Double latitude;
 
+    public String getGooglemap() {
+        return this.googlemap;
+    }
+
+    public void setGooglemap(String googlemap) {
+        this.googlemap = googlemap;
+    }
+
+    public Double getLongitude() {
+        return this.longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public Double getLatitude() {
+        return this.latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
+    }
+
     @OneToMany(mappedBy = "arret")
     @LazyCollection(LazyCollectionOption.FALSE)
     
     
     private List<Defi> defis;
+
+    public List<Defi> getDefis() {
+        return this.defis;
+    }
+
+    public void setDefis(List<Defi> defis) {
+        this.defis = defis;
+    }
 
 }
