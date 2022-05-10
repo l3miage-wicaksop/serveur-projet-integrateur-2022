@@ -105,7 +105,7 @@ public class ArretCRUD {
     Arret read(@PathVariable(value="arretId") String id, HttpServletResponse response){
         try (Connection connection = dataSource.getConnection()) {
             
-            Arret arret = arretRepository.getById(id);
+            Arret arret = arretRepository.getByNomArret(id);
             return arret;
             
         } catch(Exception e){

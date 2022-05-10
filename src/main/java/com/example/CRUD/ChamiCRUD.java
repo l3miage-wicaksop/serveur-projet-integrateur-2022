@@ -62,6 +62,7 @@ public class ChamiCRUD {
                     .ville(c.getVille())
                     .prenom(c.getPrenom())
                     .nom(c.getNom())
+                    .pointTotal(0)
                     .build();
 
             chamiRepository.save(newChami);
@@ -110,6 +111,7 @@ public class ChamiCRUD {
                     .prenom(c.getPrenom())
                     .nom(c.getNom())
                     .ville(c.getVille())
+                    .pointTotal(c.getPointTotal())
                     .build();
 
             chamiRepository.save(changedChami);

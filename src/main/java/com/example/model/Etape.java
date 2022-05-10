@@ -32,7 +32,7 @@ public class Etape {
    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "idEtape")
-    @Column(name="idEtape", unique = true, nullable = false)
+    // @Column(name="idEtape", unique = true, nullable = false)
     private  Long idEtape;
     
     @Column(name="numeroEtape")
@@ -40,28 +40,24 @@ public class Etape {
 
     @Column(name="indication", length = 1000)
     private String indication;
+    
+    // @OneToOne
+    // private Indication indication;
 
-    @Column(name = "question", length = 1000)
-    private String question;
+    @OneToMany(mappedBy = "idQuestion")
+    @Column(name = "questions")
+    private List<Question> questions;
 
-    @Column(name = "pointQuestion")
-    private int pointQuestion;
-
-    @Column(name = "indice", length = 100)
-    private String indice;
-
-    @Column(name = "pointIndice")
-    private int pointIndice;
     
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="defi")
     private Defi defi;
-    
-    private String solution;
 
-    @OneToMany(mappedBy = "etape")
-    @ElementCollection
-    private List<ChoixPossible> choixPossibles;
+    
+    
+    
+    @OneToMany(mappedBy = "indiceEtape")
+    private List<Indice> indices;
     
     public int getNumeroEtape() {
         return numeroEtape;

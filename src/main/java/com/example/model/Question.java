@@ -1,41 +1,62 @@
-// package com.example.model;
+package com.example.model;
 
-// import java.util.List;
+import java.util.List;
 
-// import javax.persistence.CollectionTable;
-// import javax.persistence.Column;
-// import javax.persistence.ElementCollection;
-// import javax.persistence.Entity;
-// import javax.persistence.GeneratedValue;
-// import javax.persistence.Id;
-// import javax.persistence.JoinColumn;
-// import javax.persistence.OneToMany;
+import javax.persistence.CollectionTable;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Embeddable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
-// import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonSetter;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+import lombok.*;
 
 
-// @NoArgsConstructor
-// @AllArgsConstructor
-// @Builder
-// @Getter
-// @Setter
-// @Entity
-// public class Question extends Etape {
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Getter
+@Setter
+@Entity
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idQuestion")
+public class Question {
     
-//     private String question ;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "idQuestion")
+    @Column(name="idQuestion")
+    private Long idQuestion;
 
-//     // @ElementCollection
-//     // @CollectionTable(
-//     //     name = "choixPossibles",
-//     //     joinColumns=@JoinColumn(name = "idQuestion", referencedColumnName = "idQuestion")
-//     // )
-//     // @OneToMany
-//     // @JoinColumn(name="choix")
-//     // private List<ChoixPossible> choixPossibles;
+    // @Id
+    private int numeroEtape;
 
-//     private String solution;
+    private String questionText ;
+
+    @ManyToOne
+    @JoinColumn(name="questionEtape", nullable = false)
+    @JsonIgnore // je ne sais pas pourquoi ca ne marche pas sans avec
+    private Etape etape;
     
-//     private int point;
-    
 
-// }
+    @OneToMany(mappedBy = "question")
+    @ElementCollection
+    private List<ChoixPossible> choixPossibles;
+
+    private String solution;
+    
+    private int point;
+    
+    @OneToOne(optional = true)
+    private Indice indice;
+
+}

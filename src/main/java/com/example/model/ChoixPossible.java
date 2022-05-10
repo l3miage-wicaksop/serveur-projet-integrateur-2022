@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -23,10 +24,11 @@ public class ChoixPossible {
 
     
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name="etape", nullable = false)
-    private Etape etape;
+    @JoinColumn(name="choixPossibles", nullable = false)
+    private Question question;
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name="idChoix")
     private int idChoix;
 
