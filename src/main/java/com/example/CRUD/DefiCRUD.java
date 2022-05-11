@@ -14,9 +14,12 @@ import javax.sql.DataSource;
 import com.example.model.Arret;
 import com.example.model.Chami;
 import com.example.model.Defi;
+import com.example.model.Etape;
 import com.example.repository.ArretRepository;
 import com.example.repository.ChamiRepository;
 import com.example.repository.DefiRepository;
+import com.example.repository.EtapeRepository;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -43,6 +46,9 @@ public class DefiCRUD {
 
     @Autowired
     private ArretRepository arretRepository;
+
+    @Autowired
+    private EtapeRepository etapeRepository;
 
     @GetMapping("/")
     public List<Defi> allUsers(HttpServletResponse response){
@@ -178,6 +184,12 @@ public class DefiCRUD {
     @DeleteMapping("/{idDefi}")
     void delete(@PathVariable(value="idDefi") String id, HttpServletResponse response){
         try (Connection connection = dataSource.getConnection()) { 
+            Defi defi=defiRepository.getById(id);
+            List<Etape> etapes=defi.getEtapes();
+            etapeRepository.deleteByDefi(defiRepository.getById(id));
+
+            
+           
             defiRepository.deleteById(id);
         } catch(Exception e){
             response.setStatus(404);

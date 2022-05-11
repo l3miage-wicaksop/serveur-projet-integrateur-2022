@@ -73,6 +73,8 @@ public class EtapeCRUD {
         }
     }
 
+    
+
     @GetMapping("/defi")
     public List<Etape> getByDefi(@RequestParam String idDefi,HttpServletResponse reponse){
         Defi defi = defiRepository.getByIdDefi(idDefi);
