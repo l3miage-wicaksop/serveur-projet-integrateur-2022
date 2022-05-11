@@ -168,7 +168,10 @@ public class DefiCRUD {
                     .dateCreation(currentTime)
                     .typeDefi(c.getTypeDefi())
                     .description(c.getDescription())
+                    .etapes(c.getEtapes())
                     .build();
+
+            etapeRepository.saveAll(c.getEtapes());
 
             defiRepository.save(newDefi);
 
@@ -194,12 +197,7 @@ public class DefiCRUD {
             for (Etape etape : etapes) {
                 etapeRepository.deleteById(etape.getIdEtape());
             }
-            try{
-                defiRepository.deleteById(id);
-            }
-            catch(Exception e){
-                return ResponseEntity.ok("HUIPIZDA");
-            }
+            defiRepository.deleteById(id);
             
             response.setStatus(200);
             return ResponseEntity.ok("Defi et les Etapes concernees sont supprimees");
