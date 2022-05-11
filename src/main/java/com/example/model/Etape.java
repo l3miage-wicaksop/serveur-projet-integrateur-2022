@@ -40,11 +40,11 @@ public class Etape {
 
     //@OneToOne(mappedBy = "idEtape",  cascade = CascadeType.ALL,fetch = FetchType.LAZY, optional = false)
     @OneToOne
-    @JoinColumn(name="question")
+    @JoinColumn(name="question", nullable = false)
     private Question question;
 
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="defi")
     private Defi defi;
 

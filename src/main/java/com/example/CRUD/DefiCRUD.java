@@ -58,10 +58,12 @@ public class DefiCRUD {
         try (Connection connection = dataSource.getConnection()) {
 
             List<Defi> defis = defiRepository.findAll();
-
+            for (Defi defi : defis) {
+                System.out.println(defi.toString());
+            }
+            
             return defis;
         } catch(Exception e){
-            
                 response.setStatus(500);
                 try{
                     response.getOutputStream().print(e.getMessage());

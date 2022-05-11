@@ -21,7 +21,7 @@ import java.util.List;
 @Builder
 @Getter
 @Setter
-// @ToString
+@ToString
 @Table(name="defis")
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "idDefi")
 
@@ -50,13 +50,13 @@ public class Defi {
     @Column(name="points")
     private int points;
 
-    @ManyToOne(cascade = CascadeType.REFRESH)
+    @ManyToOne
     @JoinColumn(name="auteur")
     // @JsonBackReference("auteurDefi")
     // @JsonIgnoreProperties("defis")
     private Chami auteur;
 
-    @ManyToOne(cascade = CascadeType.REFRESH)
+    @ManyToOne
     @JoinColumn(name="arret")
     // @JsonBackReference(value="arretDefi")
     // @JsonIgnoreProperties("defi")

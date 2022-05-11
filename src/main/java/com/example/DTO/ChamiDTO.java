@@ -19,7 +19,7 @@ public class ChamiDTO {
         this.ville = chami.getVille();
         this.prenom = chami.getPrenom();
         this.nom = chami.getNom();
-        this.defis = chami.getDefis();
+        // this.defis = chami.getDefis();
         this.visites = chami.getVisites();
     }
 
@@ -35,7 +35,7 @@ public class ChamiDTO {
 
     private String nom;
 
-    private List<Defi> defis;
+    // private List<Defi> defis;
 
     private List<Visite> visites;
 }

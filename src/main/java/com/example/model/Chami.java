@@ -50,11 +50,11 @@ public class Chami {
     @Column(name="pointTotal")
     private int pointTotal;
 
-    @OneToMany(mappedBy = "auteur")
-    @LazyCollection(LazyCollectionOption.FALSE)
-    // @JsonManagedReference("auteurDefi")
-    // @JsonIgnoreProperties("auteur") // to avoid bidirectionnal infinite loop
-    private List<Defi> defis;
+    // @OneToMany(mappedBy = "auteur")
+    // @LazyCollection(LazyCollectionOption.FALSE)
+    // // @JsonManagedReference("auteurDefi")
+    // // @JsonIgnoreProperties("auteur") // to avoid bidirectionnal infinite loop
+    // private List<Defi> defis;
 
     @OneToMany(mappedBy = "visiteur")
     @LazyCollection(LazyCollectionOption.FALSE)
