@@ -33,7 +33,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@Transactional
+// @Transactional
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/defis")
 public class DefiCRUD {

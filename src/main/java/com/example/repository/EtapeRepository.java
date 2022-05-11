@@ -17,6 +17,5 @@ public interface EtapeRepository extends JpaRepository<Etape, Long> {
     Etape getByIdEtape(Long idEtape);
     List<Etape> getByDefi(Defi defi);
     void deleteByDefi(Defi defi);
-        // TODO Auto-generated method s
-    //Etape getByDefiAndNumeroEtape(Defi defi, int numeroEtape);
+    
 }
