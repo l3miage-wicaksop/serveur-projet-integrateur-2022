@@ -15,8 +15,6 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import lombok.Builder;
 import lombok.*;
 
-import java.util.List;
-
 import javax.persistence.*;
 
 
