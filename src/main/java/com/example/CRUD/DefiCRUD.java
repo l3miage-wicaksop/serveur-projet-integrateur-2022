@@ -192,7 +192,7 @@ public class DefiCRUD {
                 etapeRepository.deleteById(etape.getIdEtape());
             }
             defiRepository.deleteById(id);
-            
+
         } catch(Exception e){
             response.setStatus(404);
             try{
