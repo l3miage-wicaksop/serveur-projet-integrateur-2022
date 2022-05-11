@@ -22,6 +22,7 @@ import com.example.repository.DefiRepository;
 import com.example.repository.EtapeRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -184,7 +185,7 @@ public class DefiCRUD {
     }
 
     @DeleteMapping("/{idDefi}")
-    void delete(@PathVariable(value="idDefi") String id, HttpServletResponse response){
+    ResponseEntity<String> delete(@PathVariable(value="idDefi") String id, HttpServletResponse response){
         try (Connection connection = dataSource.getConnection()) { 
             Defi defi=defiRepository.getById(id);
             List<Etape> etapes=defi.getEtapes();
@@ -192,7 +193,7 @@ public class DefiCRUD {
                 etapeRepository.deleteById(etape.getIdEtape());
             }
             defiRepository.deleteById(id);
-
+            return ResponseEntity.ok("Defi et les Etapes concernees sont supprimees");
         } catch(Exception e){
             response.setStatus(404);
             try{
@@ -203,6 +204,7 @@ public class DefiCRUD {
             System.err.println(e.getMessage());
             
         }
+        return ResponseEntity.badRequest().build();
 
     }
 }
