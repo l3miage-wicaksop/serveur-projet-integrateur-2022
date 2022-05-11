@@ -1,13 +1,17 @@
-package com.example;
+package com.example.CRUD;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
+import com.example.model.Chami;
+
+import com.example.repository.ChamiRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -20,32 +24,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/chamis")
 public class ChamiCRUD {
     @Autowired
     private DataSource dataSource;
 
-    @GetMapping("/")
-    public ArrayList<Chami> allUsers(HttpServletResponse response){
-        try (Connection connection = dataSource.getConnection()) { 
+    @Autowired
+    private ChamiRepository chamiRepository;
 
-            Statement stmt = connection.createStatement(); 
-            
-            ResultSet rs = stmt.executeQuery("SELECT * FROM chamis"); 
-            ArrayList<Chami> L = new ArrayList<Chami>(); 
-           
-            while (rs.next()) { 
-                Chami u = new Chami(); 
-                u.login = rs.getString("login"); 
-                u.age = rs.getInt("age"); 
-                u.description = rs.getString("description");
-                u.userId = rs.getString("userId");
-                L.add(u); 
-            }
-            return L;
+    @GetMapping("/")
+    public List<Chami> allUsers(HttpServletResponse response){
+        try (Connection connection = dataSource.getConnection()) {
+            List<Chami> chamis = chamiRepository.findAll();
+            return chamis;
         } catch(Exception e){
-            
                 response.setStatus(500);
                 try{
                     response.getOutputStream().print(e.getMessage());
@@ -58,14 +51,23 @@ public class ChamiCRUD {
     }
 
 
-    @PostMapping("/{userId}")
-    Chami create(@PathVariable(value="userId") String id, @RequestBody Chami c, HttpServletResponse response) {
-        try (Connection connection = dataSource.getConnection()) { 
+    @PostMapping("/")
+    Chami create(@RequestBody Chami c, HttpServletResponse response) {
+        try (Connection connection = dataSource.getConnection()) {
 
-            Statement stmt = connection.createStatement(); 
-            ResultSet rs = stmt.executeQuery("insert into chamis (userId, description, login, age) values('" + id + "','"+ c.description + "', '" + c.login + "'," + c.age + ")" ); 
+            Chami newChami = Chami.builder()
+                    .age(c.getAge())
+                    .description(c.getDescription())
+                    .login(c.getLogin())
+                    .ville(c.getVille())
+                    .prenom(c.getPrenom())
+                    .nom(c.getNom())
+                    .pointTotal(0)
+                    .build();
 
-            return c;
+            chamiRepository.save(newChami);
+
+            return newChami;
             
         } catch(Exception e){
             response.setStatus(404);
@@ -81,21 +83,10 @@ public class ChamiCRUD {
 
     @GetMapping("/{userId}")
     Chami read(@PathVariable(value="userId") String id, HttpServletResponse response){
-        try (Connection connection = dataSource.getConnection()) { 
-
-            Statement stmt = connection.createStatement(); 
-            ResultSet rs = stmt.executeQuery("SELECT * FROM chamis where userId ='" + id +"'"); 
-            Chami c = new Chami(); 
-            while (rs.next()) { 
-                
-                c.login = rs.getString("login"); 
-                c.age = rs.getInt("age"); 
-                c.description = rs.getString("age");
-                c.userId = id;
-            }
+        try (Connection connection = dataSource.getConnection()) {
             
-            
-            return c;
+            Chami chami = chamiRepository.getBylogin(id);
+            return chami;
             
         } catch(Exception e){
             response.setStatus(404);
@@ -113,10 +104,18 @@ public class ChamiCRUD {
     Chami update(@PathVariable(value="userId") String id, @RequestBody Chami c, HttpServletResponse response){
         try (Connection connection = dataSource.getConnection()) { 
 
-            Statement stmt = connection.createStatement(); 
-            ResultSet rs = stmt.executeQuery("update Chamis set age = " + c.age + ", login = '" + c.login + "',  description = '" + c.description + "' where userid = '" + id+"';"); 
-            
-            return c;
+            Chami changedChami = Chami.builder()
+                    .login(id)
+                    .description(c.getDescription())
+                    .age(c.getAge())
+                    .prenom(c.getPrenom())
+                    .nom(c.getNom())
+                    .ville(c.getVille())
+                    .pointTotal(c.getPointTotal())
+                    .build();
+
+            chamiRepository.save(changedChami);
+            return changedChami;
             
         } catch(Exception e){
             response.setStatus(404);
@@ -134,9 +133,7 @@ public class ChamiCRUD {
     void delete(@PathVariable(value="userId") String id, HttpServletResponse response){
         try (Connection connection = dataSource.getConnection()) { 
 
-            Statement stmt = connection.createStatement(); 
-            ResultSet rs = stmt.executeQuery("delete from Chamis where userId = '" + id + "';"); 
-            
+            chamiRepository.deleteById(id);
             
             
         } catch(Exception e){

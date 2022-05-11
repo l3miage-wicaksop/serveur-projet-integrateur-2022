@@ -1,0 +1,271 @@
+[
+    {
+        "nomArret": "La Poya",
+        "latitude": 45.197106,
+        "longitude": 5.672273,
+        "ville": "Fontaine "
+    },
+    {
+        "nomArret": "Charles Michels",
+        "latitude": 45.19383,
+        "longitude": 5.680198,
+        "ville": "Fontaine "
+    },
+    {
+        "nomArret": "Fontaine Hôtel de Ville - La Source",
+        "latitude": 45.191301,
+        "longitude": 5.687403,
+        "ville": "Fontaine "
+    },
+    {
+        "nomArret": "Louis Maisonnat",
+        "latitude": 45.189202,
+        "longitude": 5.694262,
+        "ville": "Fontaine "
+    },
+    {
+        "nomArret": "Les Fontainades",
+        "latitude": 45.189099,
+        "longitude": 5.698526,
+        "ville": "Fontaine "
+
+
+
+    },
+    {
+
+        "nomArret": "Les Fontainades - Le Vog",
+        "latitude": 45.189099,
+        "longitude": 5.698526,
+        "ville": "Fontaine "
+
+
+
+    },
+    {
+        "nomArret": "Berriat - Magasin",
+        "latitude": 45.188782,
+        "longitude": 5.706724,
+        "ville": "Fontaine "
+
+
+
+    },
+    {
+        "nomArret": "Saint-Bruno",
+        "latitude": 45.188357,
+        "longitude": 5.713771,
+        "ville": "Grenoble"
+
+
+
+    },
+    {
+
+        "nomArret": "Gares",
+        "latitude": 45.190129,
+        "longitude": 5.715133,
+        "ville": "Grenoble"
+    
+    
+    
+    },
+    {
+    
+        "nomArret": "Alsace-Lorraine",
+        "latitude": 45.189394,
+        "longitude": 5.720282,
+        "ville": "Grenoble"
+    
+    
+    
+    },
+    {
+    
+        "nomArret": "Victor Hugo",
+        "latitude": 45.189851,
+        "longitude": 5.725127,
+        "ville": "Grenoble"
+    
+    
+    
+    },
+    {
+        "nomArret": "Hubert Dubedout -Maison du Tourisme",
+        "latitude": 45.19017,
+        "longitude": 5.728253,
+        "ville": "Grenoble"
+    
+    
+    },
+    {
+        "nomArret": "Verdun Préfecture",
+        "latitude": 45.188242,
+        "longitude": 5.73153,
+        "ville": "Grenoble"
+
+
+    },
+    {
+        "nomArret": "Chavant",
+        "latitude": 45.184553,
+        "longitude": 5.731706,
+        "ville": "Grenoble"
+
+
+
+    },
+    {
+        "nomArret": "Albert 1er de Belgique",
+        "latitude":45.181689,
+        "longitude": 5.731738,
+        "ville": "Grenoble"
+
+
+
+
+    },
+    {
+        "nomArret": "Mounier",
+        "latitude":45.178968,
+        "longitude": 5.731821,
+        "ville": "Grenoble"
+
+
+    },
+    {
+        "nomArret": "MC2 - Maison de la Culture",
+        "latitude":45.173453,
+        "longitude": 5.732005,
+        "ville": "Grenoble"
+
+
+    },
+    {
+
+        "nomArret": "Malherbe",
+        "latitude":45.169454,
+        "longitude": 5.732244,
+        "ville": "Grenoble"
+
+
+    },
+    {
+        "nomArret": "La Bruyère-Parc Jean Verlhac",
+        "latitude":45.166304,
+        "longitude":5.731205 ,
+        "ville": "Grenoble"
+
+    },
+    {
+        "nomArret": "Arlequin",
+        "latitude":45.163481,
+        "longitude":5.730529 ,
+        "ville": "Grenoble"
+
+
+
+    },
+    {
+        "nomArret": "Grand'place",
+        "latitude":45.159074,
+        "longitude":5.732339,
+        "ville": "Grenoble"
+
+
+    },
+    {
+        "nomArret": "Pôle Sud-Alpexpo",
+        "latitude":45.15716,
+        "longitude":5.732754,
+        "ville": "Grenoble"
+
+
+    },
+    {
+
+        "nomArret": "Les Granges",
+        "latitude":45.156947,
+        "longitude":5.727756,
+        "ville": "Echirolles"
+
+
+    },
+    {
+
+        "nomArret": "Surieux",
+        "latitude":45.158362,
+        "longitude":5.722042,
+        "ville": "Echirolles"
+
+
+    },
+    {
+
+        "nomArret": "Essart La Butte",
+        "latitude":45.155939,
+        "longitude":5.719195,
+        "ville": "Echirolles"
+
+
+    },
+    {
+        "nomArret": "Echirolles Gare",
+        "latitude":45.153089,
+        "longitude":5.718457,
+        "ville": "Echirolles" 
+    },
+    {
+        "nomArret": "La Rampe - Centre-Ville",
+        "latitude":45.14876,
+        "longitude":5.717963,
+        "ville": "Echirolles" 
+
+        
+    },
+    {
+        "nomArret": "Marie Curie",
+        "latitude":45.145668,
+        "longitude":5.71711,
+        "ville": "Echirolles" 
+
+
+    },
+    {
+        "nomArret": "Auguste Delaune",
+        "latitude":45.142431,
+        "longitude":5.71537,
+        "ville": "Echirolles" 
+
+
+    },
+    {
+
+        "nomArret": "Denis Papin",
+        "latitude":45.138398,
+        "longitude":5.713129,
+        "ville": "Echirolles" 
+
+
+    },
+    {
+        "nomArret": "Edmée Chandon",
+        "latitude":45.13683,
+        "longitude":5.70818,
+        "ville": "Le Pont-de-Claix" 
+
+
+    },
+    {
+        "nomArret": "Pont-de-Claix-L'étoile",
+        "latitude":45.13795,
+        "longitude":5.70377,
+        "ville": "Le Pont-de-Claix" 
+
+
+
+    }
+
+
+    
+]
