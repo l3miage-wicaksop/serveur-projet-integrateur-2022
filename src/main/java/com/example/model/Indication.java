@@ -29,11 +29,13 @@ public class Indication {
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "idIndication")
     private int IdIndication;
 
-    @OneToOne(mappedBy = "indication")
-    @JoinColumn(name="indicationEtape")
-    private Etape indicationEtape;
 
     @Column(name="indication", length = 2000)
     private String indicationText;
 
+    @Column(name="srcImage")
+    private String srcImage;
+    
+    @Column(name="srcVideo")
+    private String srcVideo;
 }
