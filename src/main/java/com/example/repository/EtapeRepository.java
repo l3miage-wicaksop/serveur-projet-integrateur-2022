@@ -16,5 +16,5 @@ import java.util.List;
 public interface EtapeRepository extends JpaRepository<Etape, Long> {
     Etape getByIdEtape(Long idEtape);
     List<Etape> getByDefi(Defi defi);
-    Etape getByDefiAndNumeroEtape(Defi defi, int numeroEtape);
+    //Etape getByDefiAndNumeroEtape(Defi defi, int numeroEtape);
 }

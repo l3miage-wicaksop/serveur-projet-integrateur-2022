@@ -25,17 +25,10 @@ public class Indice  {
     @GeneratedValue
     private int idIndice;
 
+    @Column(name = "point")
     private int point;
     
-    private String indice;
-
-    @ManyToOne
-    @JoinColumn(nullable = false)
-    Etape indiceEtape;
-
-    @OneToOne(optional = true)
-    Question question;
-    
-    
+    @Column(name = "indiceText")
+    private String indiceText;
 
 }

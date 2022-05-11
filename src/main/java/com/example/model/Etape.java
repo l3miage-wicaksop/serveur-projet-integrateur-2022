@@ -35,37 +35,24 @@ public class Etape {
     // @Column(name="idEtape", unique = true, nullable = false)
     private  Long idEtape;
     
-    @Column(name="numeroEtape")
-    private int numeroEtape; 
 
-    @Column(name="indication", length = 1000)
-    private String indication;
+    // @Column(name="indication", length = 1000)
+    // private String indication;
     
-    // @OneToOne
-    // private Indication indication;
+    @OneToOne( cascade = CascadeType.ALL)
+    @JoinColumn(name="indicationEtape")
+    private Indication indication;
 
-    @OneToMany(mappedBy = "idQuestion")
-    @Column(name = "questions")
-    private List<Question> questions;
+    //@OneToOne(mappedBy = "idEtape",  cascade = CascadeType.ALL,fetch = FetchType.LAZY, optional = false)
+    @OneToOne
+    @JoinColumn(name="question")
+    private Question question;
 
     
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="defi")
     private Defi defi;
 
-    
-    
-    
-    @OneToMany(mappedBy = "indiceEtape")
-    private List<Indice> indices;
-    
-    public int getNumeroEtape() {
-        return numeroEtape;
-    }
-
-    public void setNumeroEtape(int numeroEtape) {
-        this.numeroEtape = numeroEtape;
-    }
-
-    
+    // @OneToOne
+    // private Indice indice;    
 }

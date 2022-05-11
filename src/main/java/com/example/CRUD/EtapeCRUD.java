@@ -12,11 +12,13 @@ import com.example.model.ChoixPossible;
 import com.example.model.Defi;
 import com.example.model.Etape;
 import com.example.model.Indication;
+import com.example.model.Indice;
 import com.example.model.Question;
 import com.example.repository.ChoixPossibleRepository;
 import com.example.repository.DefiRepository;
 import com.example.repository.EtapeRepository;
 import com.example.repository.IndicationRepository;
+import com.example.repository.IndiceRepository;
 import com.example.repository.QuestionRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +53,9 @@ public class EtapeCRUD {
     @Autowired
     IndicationRepository indicationRepository;
 
+    @Autowired
+    IndiceRepository indiceRepository;
+
     @GetMapping("/")
     public List<Etape> allUsers(HttpServletResponse response) {
         try (Connection connection = dataSource.getConnection()) {
@@ -76,68 +81,68 @@ public class EtapeCRUD {
         return etapes;
     }
 
-    @GetMapping("/defi/etape")
-    public Etape getByDefiAndNumeroEtape(@RequestParam String idDefi, @RequestParam int numeroEtape, HttpServletResponse reponse){
-        Defi defi = defiRepository.getByIdDefi(idDefi);
-        // List<Etape> etapes = etapeRepository.getByDefi(defi);
-        Etape etape = etapeRepository.getByDefiAndNumeroEtape(defi, numeroEtape);
+    // @GetMapping("/defi/etape")
+    // public Etape getByDefiAndNumeroEtape(@RequestParam String idDefi, @RequestParam int numeroEtape, HttpServletResponse reponse){
+    //     Defi defi = defiRepository.getByIdDefi(idDefi);
+    //     // List<Etape> etapes = etapeRepository.getByDefi(defi);
+    //     Etape etape = etapeRepository.getByDefiAndNumeroEtape(defi, numeroEtape);
 
-        return etape;
-    }
+    //     return etape;
+    // }
 
-    @PostMapping("{idEtape}/indication/")
-    Indication ajouteIndication(@PathVariable(value = "idEtape") Long id, @RequestBody Indication indication, HttpServletResponse reponse) throws SQLException {
+    // @PostMapping("{idEtape}/indication/")
+    // Indication ajouteIndication(@PathVariable(value = "idEtape") Long id, @RequestBody Indication indication, HttpServletResponse reponse) throws SQLException {
         
-        try (Connection connection = dataSource.getConnection()) {
-            Etape etapeFromServer = etapeRepository.getById(id);
-            Indication newIndication = new Indication();
-            newIndication.setIndicationEtape(etapeFromServer);
-            newIndication.setIndicationText(indication.getIndicationText());
+    //     try (Connection connection = dataSource.getConnection()) {
+    //         Etape etapeFromServer = etapeRepository.getById(id);
+    //         Indication newIndication = new Indication();
+    //         newIndication.setIndicationEtape(etapeFromServer);
+    //         newIndication.setIndicationText(indication.getIndicationText());
             
-            indicationRepository.save(newIndication);
+    //         indicationRepository.save(newIndication);
             
-            return newIndication;
-        }
+    //         return newIndication;
+    //     }
     
-    }
+    // }
 
 
-    @PostMapping("{idEtape}/question/")
-    List<Question> ajouteQuestion(@PathVariable(value = "idEtape") Long id, @RequestBody List<Question> questions,
-            HttpServletResponse reponse) throws SQLException {
-        List<Question> newQuestionsList = new ArrayList<Question>();
-        try (Connection connection = dataSource.getConnection()) {
-            Etape etapeFromServer = etapeRepository.getById(id);
-            for (Question question : questions) {
-                Question q = new Question();
-                q.setNumeroEtape(question.getNumeroEtape());
-                q.setSolution(question.getSolution());
-                q.setPoint(question.getPoint());
-                q.setQuestionText(question.getQuestionText());
-                q.setChoixPossibles(new ArrayList<ChoixPossible>());
-                q.setEtape(etapeFromServer);
-                newQuestionsList.add(q);
-                questionRepository.save(q);
+    // @PostMapping("{idEtape}/question/")
+    // Question ajouteQuestion(@PathVariable(value = "idEtape") Long id, @RequestBody Question question,
+    //         HttpServletResponse reponse) throws SQLException {
+    //     List<Question> newQuestionsList = new ArrayList<Question>();
+    //     try (Connection connection = dataSource.getConnection()) {
+    //         Etape etapeFromServer = etapeRepository.getById(id);
+    //         // for (Question question : questions) {
+    //             Question q = new Question();
+    //             //q.setNumeroEtape(question.getNumeroEtape());
+    //             q.setSolution(question.getSolution());
+    //             q.setPoint(question.getPoint());
+    //             q.setQuestionText(question.getQuestionText());
+    //             q.setChoixPossibles(new ArrayList<ChoixPossible>());
+    //             //q.setNumeroEtape(etapeFromServer.getIdEtape());
+    //             newQuestionsList.add(q);
+    //             questionRepository.save(q);
 
 
-                if (question.getChoixPossibles() != null) {
-                    for (ChoixPossible choix : question.getChoixPossibles()) {
+    //             if (question.getChoixPossibles() != null) {
+    //                 for (ChoixPossible choix : question.getChoixPossibles()) {
 
-                        ChoixPossible c = new ChoixPossible();
-                        c.setChoix(choix.getChoix());
-                        c.setQuestion(q);
+    //                     ChoixPossible c = new ChoixPossible();
+    //                     c.setChoix(choix.getChoix());
+    //                     c.setQuestion(q);
     
-                        choixPossibleRepository.save(c);
-                    }
-                }
-            }
-            return newQuestionsList;
+    //                     choixPossibleRepository.save(c);
+    //                 }
+    //             }
+    //         // }
+    //         return q;
 
-        }
+    //     }
 
         
 
-    }
+    // }
 
     @PostMapping("/")
     Etape create(@RequestBody Etape eta, HttpServletResponse response) {
@@ -149,24 +154,52 @@ public class EtapeCRUD {
             }
             Defi defi = defiRepository.getByIdDefi(eta.getDefi().getIdDefi());
 
-            Etape etape = Etape.builder()
-                    .defi(defi)
-                    .numeroEtape(eta.getNumeroEtape())
-                    .indication(eta.getIndication())
-                    .build();
+            // Etape etape = Etape.builder()
+            //         .defi(defi)
+            //         .numeroEtape(eta.getNumeroEtape())
+            //         .indication(eta.getIndication())
+                    
+            //         .build();
 
-            etape.setQuestions(new ArrayList<Question>());
+            Etape etape = new Etape();
+            etape.setDefi(defi);
+            etape.setQuestion(eta.getQuestion());
+            etape.setIndication(eta.getIndication());
+            //etape.setIndice(eta.getIndice());
+            //indicationRepository.save(eta.getIndice());
+            Question q=eta.getQuestion();
+            Indice i=q.getIndice();
+            indiceRepository.save(i);
+            //.setIndice(eta.getQuestion().getIndice())
+            questionRepository.save(eta.getQuestion());
+            // Question newQuestion = Question.builder()
+            //         .idQuestion(eta.getQuestion().getIdQuestion())
+            //         .point(eta.getQuestion().getPoint())
+            //         .
+            //         .build();
+
+            etape.setQuestion(eta.getQuestion());
+            //Indice indice = eta.getIndice();
+            //Indice i=new Indice();
+            List<Etape> etapes=new ArrayList<Etape>();
+            etapes.add(etape);
+            //defi.setEtapes(etapes);
+           // defiRepository.save(defi);
+            // etape.setIndication(eta.getIndication());
+            
+
+            // etape.setQuestion();
             // etape.setIndication(new ArrayList<Indication>());
 
             // etapeRepository.saveAndFlush(etape);
 
             // Etape etapeFromServer = etapeRepository.findById(etape.getIdEtape()).get();
-            int idxChoix = 0;
-            int idxQuestion = 0;
+            // int idxChoix = 0;
+            // int idxQuestion = 0;
             // int idxIndication = 0;s
-            List<Question> newQuestionList = new ArrayList<Question>();
-            List<ChoixPossible> newChoixList = new ArrayList<ChoixPossible>();
-            List<Indication> newIndicationList = new ArrayList<Indication>();
+            // List<Question> newQuestionList = new ArrayList<Question>();
+            // List<ChoixPossible> newChoixList = new ArrayList<ChoixPossible>();
+            // List<Indication> newIndicationList = new ArrayList<Indication>();
 
             // ajoute questions (if exist)
             // if (eta.getQuestions() != null) {
@@ -217,6 +250,32 @@ public class EtapeCRUD {
             // }
             // }
 
+
+            // Question question = eta.getQuestion();
+            // Question q = new Question();
+            // q.setNumeroEtape(question.getNumeroEtape());
+            // q.setSolution(question.getSolution());
+            // q.setPoint(question.getPoint());
+            // q.setQuestionText(question.getQuestionText());
+            // q.setChoixPossibles(new ArrayList<ChoixPossible>());
+            // q.setEtape(etape);
+
+            
+            // if (question.getChoixPossibles() != null) {
+            //     for (ChoixPossible choix : question.getChoixPossibles()) {
+                    
+            //         ChoixPossible c = new ChoixPossible();
+            //         c.setChoix(choix.getChoix());
+            //         c.setQuestion(q);
+                    
+            //         choixPossibleRepository.save(c);
+            //     }
+            // }
+            // // newQuestionsList.add(q);
+            // //etapeRepository.save(etape);
+            // etape.setQuestion(q);
+            // etape.setIndice(indice);
+            // 
             etapeRepository.save(etape);
             // etape.setQuestions(newQuestionList);
             // etape.setIndication(newIndicationList);

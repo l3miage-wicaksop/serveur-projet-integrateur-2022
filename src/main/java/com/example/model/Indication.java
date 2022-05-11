@@ -29,7 +29,7 @@ public class Indication {
     @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "idIndication")
     private int IdIndication;
 
-    @OneToOne
+    @OneToOne(mappedBy = "indication")
     @JoinColumn(name="indicationEtape")
     private Etape indicationEtape;
 

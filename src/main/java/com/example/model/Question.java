@@ -7,11 +7,13 @@ import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.MapsId;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -37,15 +39,16 @@ public class Question {
     @Column(name="idQuestion")
     private Long idQuestion;
 
-    // @Id
-    private int numeroEtape;
+    // // @Id
+    // @OneToOne(mappedBy = "idEtape")
+    // @JoinColumn(name="numeroEtape", nullable = false)
+    // private Long numeroEtape;
 
     private String questionText ;
 
-    @ManyToOne
-    @JoinColumn(name="questionEtape", nullable = false)
+    
     @JsonIgnore // je ne sais pas pourquoi ca ne marche pas sans avec
-    private Etape etape;
+    //private Etape etape;
     
 
     @OneToMany(mappedBy = "question")
@@ -57,6 +60,7 @@ public class Question {
     private int point;
     
     @OneToOne(optional = true)
+    @JoinColumn(name="indice")
     private Indice indice;
 
 }
