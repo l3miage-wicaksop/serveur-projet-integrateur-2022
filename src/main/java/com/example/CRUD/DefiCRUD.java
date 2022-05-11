@@ -192,7 +192,14 @@ public class DefiCRUD {
             for (Etape etape : etapes) {
                 etapeRepository.deleteById(etape.getIdEtape());
             }
-            defiRepository.deleteById(id);
+            try{
+                defiRepository.deleteById(id);
+            }
+            catch(Exception e){
+                return ResponseEntity.ok("HUIPIZDA");
+            }
+            
+            response.setStatus(200);
             return ResponseEntity.ok("Defi et les Etapes concernees sont supprimees");
         } catch(Exception e){
             response.setStatus(404);
