@@ -188,11 +188,11 @@ public class DefiCRUD {
         try (Connection connection = dataSource.getConnection()) { 
             Defi defi=defiRepository.getById(id);
             List<Etape> etapes=defi.getEtapes();
-            etapeRepository.deleteByDefi(defiRepository.getById(id));
-
-            
-           
+            for (Etape etape : etapes) {
+                etapeRepository.deleteById(etape.getIdEtape());
+            }
             defiRepository.deleteById(id);
+            
         } catch(Exception e){
             response.setStatus(404);
             try{

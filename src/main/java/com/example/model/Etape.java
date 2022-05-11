@@ -1,11 +1,9 @@
 package com.example.model;
 
 import javax.persistence.CascadeType;
-import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
@@ -33,7 +31,6 @@ public class Etape {
     // @Column(name="idEtape", unique = true, nullable = false)
     private  Long idEtape;
     
-
     // @Column(name="indication", length = 1000)
     // private String indication;
     
