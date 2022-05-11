@@ -10,6 +10,7 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
+import javax.transaction.Transactional;
 
 import com.example.model.Arret;
 import com.example.model.Chami;
@@ -32,6 +33,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@Transactional
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/defis")
 public class DefiCRUD {
