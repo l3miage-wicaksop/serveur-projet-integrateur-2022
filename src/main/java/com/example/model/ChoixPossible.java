@@ -26,8 +26,8 @@ public class ChoixPossible {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long idChoix;
     
-    @ManyToOne
-    private Question question;
+    // @ManyToOne
+    // private Question question;
 
     @Column(name = "reponsePossible")
     private String choix;

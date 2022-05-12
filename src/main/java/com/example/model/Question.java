@@ -55,8 +55,8 @@ public class Question {
     //private Etape etape;
     
 
-    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
-    @LazyCollection(LazyCollectionOption.FALSE)
+    @OneToMany
+    // @LazyCollection(LazyCollectionOption.FALSE)
     // @JoinColumn(name = "choixPossibles")
     private List<ChoixPossible> choixPossibles;
 
@@ -67,7 +67,7 @@ public class Question {
     @Column(name = "point")
     private int point;
     
-    @OneToOne(optional = true)
+    @OneToOne(optional = true,cascade = CascadeType.ALL)
     @JoinColumn(name="indice")
     private Indice indice;
 

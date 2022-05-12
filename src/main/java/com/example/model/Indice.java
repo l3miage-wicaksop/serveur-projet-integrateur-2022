@@ -23,7 +23,7 @@ import lombok.*;
 public class Indice  {
     @Id
     @GeneratedValue
-    private int idIndice;
+    private Long idIndice;
 
     @Column(name = "point")
     private int point;
