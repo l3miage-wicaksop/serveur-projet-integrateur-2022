@@ -168,11 +168,20 @@ public class EtapeCRUD {
             // etape.setIndication(eta.getIndication());
             
             Question q=eta.getQuestion();
-            List<ChoixPossible> choices = q.getChoixPossibles();
+            List<ChoixPossible> choices = eta.getQuestion().getChoixPossibles();
+            
+            // questionRepository.save(q);
+            
+            // for (ChoixPossible choice : choices){
+            //     // choice.setQuestion(q);
+            //     // choixPossibleRepository.save(choice);
+            // }
+            // q.setChoixPossibles(choices);
+            // q.setChoixPossibles(choices);
             Indice i=q.getIndice();
             choixPossibleRepository.saveAll(choices);
             indiceRepository.save(i);
-            questionRepository.save(eta.getQuestion());
+            questionRepository.save(q);
 
             
             etapeRepository.save(newEtape);
