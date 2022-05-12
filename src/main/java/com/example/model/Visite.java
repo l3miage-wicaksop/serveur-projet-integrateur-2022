@@ -6,6 +6,7 @@ import javax.persistence.*;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 import java.sql.Timestamp;
@@ -43,6 +44,7 @@ public class Visite{
     @JoinColumn(name="defi")
     // @JsonIgnoreProperties("visites")
     // @JsonIgnoreProperties(ignoreUnknown = true)
+    @JsonIdentityReference(alwaysAsId = true)
     private Defi defi;
     
     @ManyToOne
@@ -50,6 +52,7 @@ public class Visite{
     // @JsonBackReference("visiteur")
     // @JsonIgnoreProperties("visites")
     // @JsonIgnoreProperties(ignoreUnknown = true)
+    // @JsonIdentityReference(alwaysAsId = true)
     private Chami visiteur;
      
     @Column(name = "dateDebut")
