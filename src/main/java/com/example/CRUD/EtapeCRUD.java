@@ -149,143 +149,36 @@ public class EtapeCRUD {
     @PostMapping("/")
     Etape create(@RequestBody Etape eta, HttpServletResponse response) {
         try (Connection connection = dataSource.getConnection()) {
-            if (eta.getDefi() == null || eta.getDefi() == null) {
+            if (eta.getDefi() == null) {
                 // response.sendError(404, "defi ne doit pas etre null");
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST, "message goes here");
 
             }
             Defi defi = defiRepository.getByIdDefi(eta.getDefi().getIdDefi());
 
-            // Etape etape = Etape.builder()
-            //         .defi(defi)
-            //         .numeroEtape(eta.getNumeroEtape())
-            //         .indication(eta.getIndication())
-                    
-            //         .build();
-
-            Etape etape = new Etape();
-            etape.setDefi(defi);
-            etape.setQuestion(eta.getQuestion());
-            etape.setIndication(eta.getIndication());
-            //etape.setIndice(eta.getIndice());
-            //indicationRepository.save(eta.getIndice());
-            Question q=eta.getQuestion();
-            Indice i=q.getIndice();
-            indiceRepository.save(i);
-            //.setIndice(eta.getQuestion().getIndice())
-            questionRepository.save(eta.getQuestion());
-            // Question newQuestion = Question.builder()
-            //         .idQuestion(eta.getQuestion().getIdQuestion())
-            //         .point(eta.getQuestion().getPoint())
-            //         .
-            //         .build();
-
-            etape.setQuestion(eta.getQuestion());
-            //Indice indice = eta.getIndice();
-            //Indice i=new Indice();
-            List<Etape> etapes=new ArrayList<Etape>();
-            etapes.add(etape);
-            //defi.setEtapes(etapes);
-           // defiRepository.save(defi);
+            Etape newEtape = Etape.builder()
+                .defi(defi)
+                .indication(eta.getIndication())
+                .question(eta.getQuestion())
+                .build();
+            
+            // Etape etape = new Etape();
+            // etape.setDefi(defi);
+            // etape.setQuestion(eta.getQuestion());
             // etape.setIndication(eta.getIndication());
             
-
-            // etape.setQuestion();
-            // etape.setIndication(new ArrayList<Indication>());
-
-            // etapeRepository.saveAndFlush(etape);
-
-            // Etape etapeFromServer = etapeRepository.findById(etape.getIdEtape()).get();
-            // int idxChoix = 0;
-            // int idxQuestion = 0;
-            // int idxIndication = 0;s
-            // List<Question> newQuestionList = new ArrayList<Question>();
-            // List<ChoixPossible> newChoixList = new ArrayList<ChoixPossible>();
-            // List<Indication> newIndicationList = new ArrayList<Indication>();
-
-            // ajoute questions (if exist)
-            // if (eta.getQuestions() != null) {
-            // for (Question question : eta.getQuestions()) {
-            // Question q = Question.builder()
-            // .questionText(question.getQuestionText())
-            // .solution(question.getSolution())
-            // .point(question.getPoint())
-
-            // // .idQuestion("Q"+Integer.toString(idxQuestion) +
-            // // "-E"+Integer.toString(eta.getNumeroEtape()))
-            // .build();
-            // q.setChoixPossibles(new ArrayList<ChoixPossible>());
-            // q.setEtape(etape);
-            // etape.getQuestions().add(q);
-            // newQuestionList.add(q);
-
-            // idxQuestion++;
-
-            // // ajoute choix possibles (if exist)
-            // if (question.getChoixPossibles() != null) {
-            // for (ChoixPossible choix : question.getChoixPossibles()) {
-            // ChoixPossible c = ChoixPossible.builder()
-            // .choix(choix.getChoix())
-            // .idChoix(idxChoix)
-            // .build();
-
-            // q.getChoixPossibles().add(c);
-            // c.setQuestion(question);
-            // idxChoix++;
-
-            // newChoixList.add(c);
-            // }
-            // }
-            // }
-            // }
-
-            // // ajout indication (if exist)
-            // if (eta.getIndication() != null) {
-            // for (Indication indication : eta.getIndication()) {
-            // Indication newIndication = Indication.builder()
-            // .indicationText(indication.getIndicationText())
-            // .build();
-
-            // newIndication.setIndicationEtape(etape);
-            // etape.getIndication().add(indication);
-            // newIndicationList.add(newIndication);
-            // }
-            // }
-
-
-            // Question question = eta.getQuestion();
-            // Question q = new Question();
-            // q.setNumeroEtape(question.getNumeroEtape());
-            // q.setSolution(question.getSolution());
-            // q.setPoint(question.getPoint());
-            // q.setQuestionText(question.getQuestionText());
-            // q.setChoixPossibles(new ArrayList<ChoixPossible>());
-            // q.setEtape(etape);
+            Question q=eta.getQuestion();
+            List<ChoixPossible> choices = q.getChoixPossibles();
+            Indice i=q.getIndice();
+            choixPossibleRepository.saveAll(choices);
+            indiceRepository.save(i);
+            questionRepository.save(eta.getQuestion());
 
             
-            // if (question.getChoixPossibles() != null) {
-            //     for (ChoixPossible choix : question.getChoixPossibles()) {
-                    
-            //         ChoixPossible c = new ChoixPossible();
-            //         c.setChoix(choix.getChoix());
-            //         c.setQuestion(q);
-                    
-            //         choixPossibleRepository.save(c);
-            //     }
-            // }
-            // // newQuestionsList.add(q);
-            // //etapeRepository.save(etape);
-            // etape.setQuestion(q);
-            // etape.setIndice(indice);
-            // 
-            etapeRepository.save(etape);
-            // etape.setQuestions(newQuestionList);
-            // etape.setIndication(newIndicationList);
-            // questionRepository.saveAll(newQuestionList);
-            // choixPossibleRepository.saveAll(newChoixList);
-            // indicationRepository.saveAll(newIndicationList);
-            // etapeRepository.save(etape);
-            return etape;
+            etapeRepository.save(newEtape);
+            
+            return newEtape;
+
         } catch (Exception e) {
             response.setStatus(500);
             try {

@@ -2,6 +2,7 @@ package com.example.model;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
@@ -21,6 +22,9 @@ import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSetter;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
 
 import lombok.*;
 
@@ -43,20 +47,24 @@ public class Question {
     // @OneToOne(mappedBy = "idEtape")
     // @JoinColumn(name="numeroEtape", nullable = false)
     // private Long numeroEtape;
-
+    @Column(name="questionText")
     private String questionText ;
 
     
-    @JsonIgnore // je ne sais pas pourquoi ca ne marche pas sans avec
+    //@JsonIgnore // je ne sais pas pourquoi ca ne marche pas sans avec
     //private Etape etape;
     
 
-    @OneToMany(mappedBy = "question")
-    @ElementCollection
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
+    @LazyCollection(LazyCollectionOption.FALSE)
+    // @JoinColumn(name = "choixPossibles")
     private List<ChoixPossible> choixPossibles;
 
+
+    @Column(name="solution")
     private String solution;
     
+    @Column(name = "point")
     private int point;
     
     @OneToOne(optional = true)

@@ -39,13 +39,13 @@ public class Visite{
     @Column(name="idVisite")
     private String idVisite;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="defi")
     // @JsonIgnoreProperties("visites")
     // @JsonIgnoreProperties(ignoreUnknown = true)
     private Defi defi;
     
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="chami")
     // @JsonBackReference("visiteur")
     // @JsonIgnoreProperties("visites")

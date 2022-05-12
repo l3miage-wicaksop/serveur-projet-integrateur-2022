@@ -168,10 +168,13 @@ public class DefiCRUD {
                     .dateCreation(currentTime)
                     .typeDefi(c.getTypeDefi())
                     .description(c.getDescription())
-                    .etapes(c.getEtapes())
                     .build();
-
-            etapeRepository.saveAll(c.getEtapes());
+            
+            if(c.getEtapes()!=null && c.getEtapes().size()!=0){
+                newDefi.setEtapes(c.getEtapes());
+                etapeRepository.saveAll(c.getEtapes()); 
+            }
+                
 
             defiRepository.save(newDefi);
 

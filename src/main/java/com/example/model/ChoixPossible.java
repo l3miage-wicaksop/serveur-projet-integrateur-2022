@@ -22,15 +22,13 @@ import lombok.*;
 @Table(name="ChoixPossible")
 public class ChoixPossible {
 
-    
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name="choixPossibles", nullable = false)
-    private Question question;
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="idChoix")
-    private int idChoix;
+    private Long idChoix;
+    
+    @ManyToOne
+    private Question question;
 
+    @Column(name = "reponsePossible")
     private String choix;
 }

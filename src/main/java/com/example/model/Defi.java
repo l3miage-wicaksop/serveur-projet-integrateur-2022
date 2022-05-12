@@ -63,13 +63,13 @@ public class Defi {
     // @JsonIgnoreProperties(ignoreUnknown = true)
     private Arret arret;
 
-    @OneToMany(mappedBy = "defi")
+    @OneToMany(mappedBy = "defi", cascade = CascadeType.ALL)
     @JsonIgnoreProperties("defi")
     // @JsonIgnoreProperties(ignoreUnknown = true)
     private List<Visite> visites;
 
     
-    @OneToMany(mappedBy = "defi")
+    @OneToMany(mappedBy = "defi", cascade = CascadeType.ALL)
     private List<Etape> etapes;
     
 }

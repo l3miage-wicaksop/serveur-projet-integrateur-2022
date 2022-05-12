@@ -69,15 +69,13 @@ public class VisiteCRUD {
                 //Find all visites
                 // List<Visite> visites = visiteRepository.findVisiteByIdVisiteContaining(defiIdWithoutD);
                 // List<Visite> visites = visiteRepository.findVisiteByIdVisiteContaining(defiIdWithoutD);
-                Defi d = defiRepository.findById(v.getDefi().getIdDefi()).get();
-                List<Visite> visitesDefiD = visiteRepository.findByDefi(d);
+                List<Visite> visitesDefiD = visiteRepository.findByDefi(v.getDefi());
                 
                 if(visitesDefiD.size()==0){
                     //VisiteId construction
                     newVisiteId = "V" + defiIdWithoutD + "-" + "1";
                 }
                 else{
-                    int newVisiteSerie = visitesDefiD.size() +1;
                     newVisiteId = "V" + defiIdWithoutD + "-" + Integer.toString(visitesDefiD.size()+1);
                     //Take defiId for visite id construction
                     // int defiIdInt = Integer.parseInt(defiIdWithoutD);
