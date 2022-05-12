@@ -2,7 +2,6 @@ package com.example;
 import java.sql.Timestamp;
 import com.example.model.Chami;
 import com.example.model.Defi;
-import com.example.model.Visite;
 import com.example.repository.ChamiRepository;
 import com.example.repository.DefiRepository;
 import com.example.repository.VisiteRepository;
@@ -125,38 +124,38 @@ public class ObjectBuilder {
     
     }
 
-    public void V0VisitesCreator(){
+    // public void V0VisitesCreator(){
 
-        String str = "10/04/2021 18:00";
-        Timestamp timestamp = Timestamp.valueOf(str);
+    //     String str = "10/04/2021 18:00";
+    //     Timestamp timestamp = Timestamp.valueOf(str);
         
-        String commentaire ="";
-        commentaire += "- Il pleuvait des cordes. Je me suis mis du mauvais coté de l'arrêt.\n";
-        commentaire += "- J'ai pris le premier indice.\n";
-        commentaire += "- Après évidemment de l'autre coté c'est plus facile.\n";
-        commentaire += "- En fait je trouve qu'il est un peu trop facile => j'ai mis 3 étoiles.\n";
+    //     String commentaire ="";
+    //     commentaire += "- Il pleuvait des cordes. Je me suis mis du mauvais coté de l'arrêt.\n";
+    //     commentaire += "- J'ai pris le premier indice.\n";
+    //     commentaire += "- Après évidemment de l'autre coté c'est plus facile.\n";
+    //     commentaire += "- En fait je trouve qu'il est un peu trop facile => j'ai mis 3 étoiles.\n";
 
-        Defi d = defiRepository.findById("D127").get();
+    //     Defi d = defiRepository.findById("D127").get();
         
-        // Visite v1 = Visite.builder()
-        //     .defi(d)
-        //     .idVisite("V127-1")
-        //     .visiteur(chamiRepository.getBylogin("nomoldus"))
-        //     // .dateDeVisite(timestamp)
-        //     .modeVisite(true)
-        //     .points(0)
-        //     .score(3)
-        //     .status(true)
-        //     .temps(8)
-        //     .commentaire(commentaire)
-        //     .build();
+    //     Visite v1 = Visite.builder()
+    //         .defi(d)
+    //         .idVisite("V127-1")
+    //         .visiteur(chamiRepository.getBylogin("nomoldus"))
+    //         // .dateDeVisite(timestamp)
+    //         .modeVisite(true)
+    //         .points(0)
+    //         .score(3)
+    //         .status(true)
+    //         .temps(8)
+    //         .commentaire(commentaire)
+    //         .build();
 
             
-        //     visiteRepository.save(v1);
+    //         visiteRepository.save(v1);
 
     
     
     
-    }
+    // }
 
 }

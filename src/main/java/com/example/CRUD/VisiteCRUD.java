@@ -1,20 +1,12 @@
 package com.example.CRUD;
 
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Timestamp;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
 
-import com.example.model.Defi;
 import com.example.model.Visite;
-import com.example.repository.DefiRepository;
 import com.example.repository.VisiteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -27,9 +19,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api/visites")
@@ -40,8 +30,6 @@ public class VisiteCRUD {
         @Autowired
         private VisiteRepository visiteRepository;
 
-        @Autowired
-        private DefiRepository defiRepository;
     
         @GetMapping("/")
         public List<Visite> allUsers(HttpServletResponse response){

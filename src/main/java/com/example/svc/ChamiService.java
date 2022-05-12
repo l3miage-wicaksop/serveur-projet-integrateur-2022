@@ -1,6 +1,5 @@
 package com.example.svc;
 
-import javax.transaction.Transactional;
 
 import com.example.model.Chami;
 import com.example.repository.ChamiRepository;

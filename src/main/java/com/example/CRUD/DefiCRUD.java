@@ -1,16 +1,10 @@
 package com.example.CRUD;
 import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Time;
 import java.sql.Timestamp;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.DataSource;
-import javax.transaction.Transactional;
 
 import com.example.model.Arret;
 import com.example.model.Chami;
