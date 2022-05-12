@@ -1,5 +1,11 @@
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=7711988&assignment_repo_type=AssignmentRepo)
 # l3m-PI-serveur : Partie serveur du Projet Intégrateur L3 MIAGE 2020-2021
+A stub which can easily be deployed to Heroku.
+
+This application supports the [Getting Started with Java on Heroku](https://devcenter.heroku.com/articles/getting-started-with-java) article - check it out.
+
+[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
+
 ## Membres du  Groupe 9
 - CRIVOI Dmitrii
 - SEVENIER Jonathan
@@ -31,12 +37,6 @@ Durant notre developpement, nous avons eu faites 3 diagrammes:
 ## Description de classes des données
 Voici les classes des données prises de diagramme Dbeaver
 <img src="/diagramme/diagramme_de_classe_des_donnees.png" >
-
-A stub which can easily be deployed to Heroku.
-
-This application supports the [Getting Started with Java on Heroku](https://devcenter.heroku.com/articles/getting-started-with-java) article - check it out.
-
-[![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 ## Running Locally
 
