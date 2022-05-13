@@ -1,4 +1,5 @@
 package com.example.CRUD;
+
 import java.sql.Connection;
 import java.sql.Timestamp;
 import java.util.List;
@@ -8,12 +9,18 @@ import javax.sql.DataSource;
 
 import com.example.model.Arret;
 import com.example.model.Chami;
+import com.example.model.ChoixPossible;
 import com.example.model.Defi;
 import com.example.model.Etape;
+import com.example.model.Indice;
+import com.example.model.Question;
 import com.example.repository.ArretRepository;
 import com.example.repository.ChamiRepository;
+import com.example.repository.ChoixPossibleRepository;
 import com.example.repository.DefiRepository;
 import com.example.repository.EtapeRepository;
+import com.example.repository.IndiceRepository;
+import com.example.repository.QuestionRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -47,40 +54,48 @@ public class DefiCRUD {
     @Autowired
     private EtapeRepository etapeRepository;
 
+    @Autowired
+    private QuestionRepository questionRepository;
+
+    @Autowired
+    private ChoixPossibleRepository choixPossibleRepository;
+
+    @Autowired
+    IndiceRepository indiceRepository;
+
     @GetMapping("/")
-    public List<Defi> allUsers(HttpServletResponse response){
+    public List<Defi> allUsers(HttpServletResponse response) {
         try (Connection connection = dataSource.getConnection()) {
 
             List<Defi> defis = defiRepository.findAll();
             for (Defi defi : defis) {
                 System.out.println(defi.toString());
             }
-            
+
             return defis;
-        } catch(Exception e){
-                response.setStatus(500);
-                try{
-                    response.getOutputStream().print(e.getMessage());
-                } catch(Exception e2){
-                    System.err.println(e2.getMessage());
-                }
-                System.err.println(e.getMessage());
-                return null;
-        }   
+        } catch (Exception e) {
+            response.setStatus(500);
+            try {
+                response.getOutputStream().print(e.getMessage());
+            } catch (Exception e2) {
+                System.err.println(e2.getMessage());
+            }
+            System.err.println(e.getMessage());
+            return null;
+        }
     }
 
-
     @GetMapping("/{idDefi}")
-    Defi read(@PathVariable(value="idDefi") String id, HttpServletResponse response){
+    Defi read(@PathVariable(value = "idDefi") String id, HttpServletResponse response) {
         try (Connection connection = dataSource.getConnection()) {
             Defi defi = defiRepository.getByIdDefi(id);
             return defi;
-            
-        } catch(Exception e){
+
+        } catch (Exception e) {
             response.setStatus(404);
-            try{
+            try {
                 response.getOutputStream().print(e.getMessage());
-            } catch(Exception e2){
+            } catch (Exception e2) {
                 System.err.println(e2.getMessage());
             }
             System.err.println(e.getMessage());
@@ -89,9 +104,9 @@ public class DefiCRUD {
     }
 
     @PutMapping("/{idDefi}")
-    Defi update(@PathVariable(value="idDefi") String id, @RequestBody Defi d, HttpServletResponse response){
-        try (Connection connection = dataSource.getConnection()) { 
-            
+    Defi update(@PathVariable(value = "idDefi") String id, @RequestBody Defi d, HttpServletResponse response) {
+        try (Connection connection = dataSource.getConnection()) {
+
             Defi changedDefi = Defi.builder()
                     .idDefi(id)
                     .description(d.getDescription())
@@ -104,12 +119,12 @@ public class DefiCRUD {
 
             defiRepository.save(changedDefi);
             return changedDefi;
-            
-        } catch(Exception e){
+
+        } catch (Exception e) {
             response.setStatus(404);
-            try{
+            try {
                 response.getOutputStream().print(e.getMessage());
-            } catch(Exception e2){
+            } catch (Exception e2) {
                 System.err.println(e2.getMessage());
             }
             System.err.println(e.getMessage());
@@ -118,37 +133,36 @@ public class DefiCRUD {
     }
 
     @PostMapping("/")
-    Defi create( @RequestBody Defi c, HttpServletResponse response) {
-        try (Connection connection = dataSource.getConnection()) {  
-            //JSON to send to check
+    Defi create(@RequestBody Defi c, HttpServletResponse response) {
+        try (Connection connection = dataSource.getConnection()) {
+            // JSON to send to check
             // {
-            //     "titre": "test",
-            //     "description":"juste pour un test de POST",
-            //     "auteur": {
-            //         "login":"escribis",
-            //         "age":22,
-            //         "description": "vlalavlavl",
-            //         "ville":"Grenoble"
-            //     },
-            //     "dateCreation":"2022-04-26T16:18:25.000+00:00"
+            // "titre": "test",
+            // "description":"juste pour un test de POST",
+            // "auteur": {
+            // "login":"escribis",
+            // "age":22,
+            // "description": "vlalavlavl",
+            // "ville":"Grenoble"
+            // },
+            // "dateCreation":"2022-04-26T16:18:25.000+00:00"
             // }
-            
-            //Find Chami for Defi creation
+
+            // Find Chami for Defi creation
             Chami chamiAuteur = chamiRepository.findById(c.getAuteur().getLogin()).get();
 
-            //Find Arret for Defi creation
+            // Find Arret for Defi creation
             Arret arretDefi = arretRepository.getByNomArret(c.getArret().getNomArret());
-            
-            
-            //Generate a next Id for Defi
-            String newDefiId ="";
-            List<Defi> defis = defiRepository.findAll();
-            if(defis.isEmpty()){
-                newDefiId = "D1";
-            }else{
 
-                String lastDefiId = defis.get(defis.size()-1).getIdDefi();
-                int defiIdInt = Integer.parseInt(lastDefiId.substring(lastDefiId.indexOf("D") + 1)) +1;
+            // Generate a next Id for Defi
+            String newDefiId = "";
+            List<Defi> defis = defiRepository.findAll();
+            if (defis.isEmpty()) {
+                newDefiId = "D1";
+            } else {
+
+                String lastDefiId = defis.get(defis.size() - 1).getIdDefi();
+                int defiIdInt = Integer.parseInt(lastDefiId.substring(lastDefiId.indexOf("D") + 1)) + 1;
                 newDefiId = "D" + defiIdInt;
             }
 
@@ -163,22 +177,40 @@ public class DefiCRUD {
                     .typeDefi(c.getTypeDefi())
                     .description(c.getDescription())
                     .build();
-            
-            if(c.getEtapes()!=null && c.getEtapes().size()!=0){
-                newDefi.setEtapes(c.getEtapes());
-                etapeRepository.saveAll(c.getEtapes()); 
+
+
+            defiRepository.save(newDefi);
+            if (c.getEtapes() != null && c.getEtapes().size() != 0) {
+                Defi defiFromServer = defiRepository.getById(newDefi.getIdDefi());
+                List<Etape> etapes = c.getEtapes();
+                // newDefi.setEtapes(c.getEtapes());
+
+                for (Etape etape : etapes) {
+                    Question q = etape.getQuestion();
+                    List<ChoixPossible> choices = etape.getQuestion().getChoixPossibles();
+                    etape.setDefi(defiFromServer);
+                    Indice i = q.getIndice();
+                    choixPossibleRepository.saveAll(choices);
+                    indiceRepository.save(i);
+                    questionRepository.save(q);
+
+                    etapeRepository.save(etape);
+
+                }
+
+                newDefi.setEtapes(etapes);
+
             }
-                
 
             defiRepository.save(newDefi);
 
             return newDefi;
 
-        } catch(Exception e){
+        } catch (Exception e) {
             response.setStatus(404);
-            try{
+            try {
                 response.getOutputStream().print(e.getMessage());
-            } catch(Exception e2){
+            } catch (Exception e2) {
                 System.err.println(e2.getMessage());
             }
             System.err.println(e.getMessage());
@@ -187,26 +219,26 @@ public class DefiCRUD {
     }
 
     @DeleteMapping("/{idDefi}")
-    ResponseEntity<String> delete(@PathVariable(value="idDefi") String id, HttpServletResponse response){
-        try (Connection connection = dataSource.getConnection()) { 
-            Defi defi=defiRepository.getById(id);
-            List<Etape> etapes=defi.getEtapes();
+    ResponseEntity<String> delete(@PathVariable(value = "idDefi") String id, HttpServletResponse response) {
+        try (Connection connection = dataSource.getConnection()) {
+            Defi defi = defiRepository.getById(id);
+            List<Etape> etapes = defi.getEtapes();
             for (Etape etape : etapes) {
                 etapeRepository.deleteById(etape.getIdEtape());
             }
             defiRepository.deleteById(id);
-            
+
             response.setStatus(200);
             return ResponseEntity.ok("Defi et les Etapes concernees sont supprimees");
-        } catch(Exception e){
+        } catch (Exception e) {
             response.setStatus(404);
-            try{
+            try {
                 response.getOutputStream().print(e.getMessage());
-            } catch(Exception e2){
+            } catch (Exception e2) {
                 System.err.println(e2.getMessage());
             }
             System.err.println(e.getMessage());
-            
+
         }
         return ResponseEntity.badRequest().build();
 
